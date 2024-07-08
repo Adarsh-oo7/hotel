@@ -8,41 +8,65 @@
         <p>Hi there! Create a free account today.</p>
     </div>
 
+
+
+
     <div class="container">
         <!--   for the form sign-up  -->
         <div class="row">
+            <div class="col-12 col-sm-6 imgSign">
+                
+
+              
+            </div>
             <div class="col-12 col-sm-6 ">
+
                 <div class="formSign py-3 px-2 bg-light">
+                    {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger alert-dismissible">
+                                <strong>{{ error|escape }}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger alert-dismissible">
+                            <strong>{{ error|escape }}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
                 <form action="" method="post">
                     {% csrf_token %}
                     <label for="">Full Name</label>
-                    <input class="form-control" type="text" placeholder="Full Name">
-                    
+                {{form.full_name}}                    
                     <label for="">Username</label>
-                    <input class="form-control" type="text" placeholder="Username">
-
+                {{form.username}}
                     <label for="">Email</label>
-                    <input class="form-control" type="email" placeholder="Email">
+                {{form.email}}
+
+                    <label for="">Phone</label>
+                {{form.phone}}
+
 
                     <label for="">Password1:</label>
-                    <input class="form-control" type="password" placeholder="Password1">
+                {{form.password1}}
 
                     <label for="">password2</label>
-                    <input class="form-control" type="text" placeholder="Password2">
+                {{form.password2}}
 
                     <button class="btn register-btn btn-block mt-3 " type="submit">REGISTER</button>
                 </form>
             </div>
             </div>
        
-            <div class="col-12 col-sm-6 imgSign">
-                
-
-                <!--  for the form  image-->
-                  <!-- <img src=".\signUpImage.jpg" alt=""> -->
-
-
-            </div>
+          
         </div>
     </div>
 

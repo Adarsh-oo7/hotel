@@ -3,10 +3,13 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import User,Profile
 
 class UserRegisterForm(UserCreationForm):
-    full_name=forms.CharField(widget=forms.TextInput(attrs={'placeholder':"Enter the full Name"}))
-    # username=forms.CharField(widget=forms.TextInput(attrs={'placeholder':"Enter the full Name"}))
-    # full_name=forms.CharField(widget=forms.TextInput(attrs={'placeholder':"Enter the full Name"}))
-    # full_name=forms.CharField(widget=forms.TextInput(attrs={'placeholder':"Enter the full Name"}))
+    full_name=forms.CharField(widget=forms.TextInput(attrs={'placeholder':"Enter the full Name",'class':"form-control"}))
+    username=forms.CharField(widget=forms.TextInput(attrs={'placeholder':"Enter the User Name",'class':'form-control'}))
+    email=forms.CharField(widget=forms.EmailInput(attrs={'placeholder':"Enter Your Email",'class':'form-control'}))
+    phone=forms.CharField(widget=forms.TextInput(attrs={'placeholder':"Enter Your phone",'class':'form-control'}))
+    password1=forms.CharField(widget=forms.PasswordInput(attrs={'placeholder':"password",'class':'form-control'}))
+    password2=forms.CharField(widget=forms.PasswordInput(attrs={'placeholder':"Conform Password",'class':'form-control'}))
+
 
 
     class Meta:

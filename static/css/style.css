@@ -32,3 +32,27 @@
     background-color: #8A1DFF;
     color: white;
 }
+
+.nav_btn
+{
+background-color: #8A1DFF;
+color: white;
+width: 100px;
+font-size: 13px;
+}
+nav
+{
+    box-shadow: 0px 1px 9px #b7b6b9;
+    border-bottom: 0px solid rgb(161, 158, 158);
+}
+.nav-link
+{
+    color: black;
+}
+.nav-link:focus
+{
+    border: 1px solid white;
+    background-color: rgb(252, 203, 211);
+    border-radius: 3px;
+    color: #8A1DFF !important;
+}
