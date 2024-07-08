@@ -1,16 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="" method="post">
-        {% csrf_token %}
-    
-    {{form.as_p}}
-    <button type="submit">subimt</button>
-</form>
-</body>
-</html>
+
+{% extends "base/base.html" %}
+
+{% block content %}
+<section>
+    <div class="singUpheader text-center mt-4">
+        <h3 class="">Sign Up</h3>
+        <p>Hi there! Create a free account today.</p>
+    </div>
+
+    <div class="container">
+        <!--   for the form sign-up  -->
+        <div class="row">
+            <div class="col-12 col-sm-6 ">
+                <div class="formSign py-3 px-2 bg-light">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <label for="">Full Name</label>
+                    <input class="form-control" type="text" placeholder="Full Name">
+                    
+                    <label for="">Username</label>
+                    <input class="form-control" type="text" placeholder="Username">
+
+                    <label for="">Email</label>
+                    <input class="form-control" type="email" placeholder="Email">
+
+                    <label for="">Password1:</label>
+                    <input class="form-control" type="password" placeholder="Password1">
+
+                    <label for="">password2</label>
+                    <input class="form-control" type="text" placeholder="Password2">
+
+                    <button class="btn register-btn btn-block mt-3 " type="submit">REGISTER</button>
+                </form>
+            </div>
+            </div>
+       
+            <div class="col-12 col-sm-6 imgSign">
+                
+
+                <!--  for the form  image-->
+                  <!-- <img src=".\signUpImage.jpg" alt=""> -->
+
+
+            </div>
+        </div>
+    </div>
+
+
+</section>
+{% endblock content %}
