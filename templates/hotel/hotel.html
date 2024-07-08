@@ -6,6 +6,21 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>hotel page</h2>
+    {% if request.user.is_authenticated %}
+    <h1>
+        welcome back {{request.user.username}}
+        
+    </h1>
+    <a href="{% url 'logout' %}">logout</a>
+    {% else %}
+
+    <h2>welcome back</h2>
+    <a href="{% url 'sign-up'%}">Register</a>
+    <a href="">Login</a>
+   
+    {% endif %}
+
+    <h3>the project vedio is pused at 41:18 min out of 59:49</h3>
+    
 </body>
 </html>

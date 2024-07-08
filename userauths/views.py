@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import User,Profile
 from .forms import UserRegisterForm
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 # Create your views here.
 
@@ -14,10 +14,10 @@ def RegisterView(request):
         full_name=form.cleaned_data.get('full_name')
         phone=form.cleaned_data.get('phone')
         email=form.cleaned_data.get('email')
-        password=form.cleaned_data.get('password')
+        password=form.cleaned_data.get('password1')
 
         user=authenticate(email=email,password=password)
-        login(user)
+        login(request,user)
 
         messages.success(request,f"hey {full_name} your account has been created successfully.")
 
@@ -35,3 +35,21 @@ def RegisterView(request):
 
     }
     return render(request,'userauths/sign-up.html', context)
+
+
+
+def logout(request):
+    logout(request)
+    return redirect('index')
+
+
+# def loginViewTem(request):
+#     if request.user.is_authenticated:
+#         messages.warning(request,'your are already logged in')
+#         return redirect('index')
+    
+#     if request.method == 'POST':
+#         email=request.POST.get('email')
+#         password=request.POST.get('password')
+
+#         try:
