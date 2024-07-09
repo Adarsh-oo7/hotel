@@ -29,27 +29,42 @@ def RegisterView(request):
         return redirect('/')
 
 
-        print(full_name)
     context={
         'form':form
 
     }
     return render(request,'userauths/sign-up.html', context)
 
-
-
-def logout(request):
+def logOut(request):
     logout(request)
+    messages.success(request,'You have been logged out')
     return redirect('index')
 
-
-# def loginViewTem(request):
-#     if request.user.is_authenticated:
-#         messages.warning(request,'your are already logged in')
-#         return redirect('index')
+def loginViewTem(request):
+    if request.user.is_authenticated:
+        print('hellow')
+        messages.warning(request,'your are already logged in')
+        return redirect('index')
     
-#     if request.method == 'POST':
-#         email=request.POST.get('email')
-#         password=request.POST.get('password')
+    if request.POST:
+        email=request.POST.get('email')
+        password=request.POST.get('password')
 
-#         try:
+        try:
+            user_query=User.objects.get(email=email)
+            user_auth=authenticate(request,email=email,password=password)
+            if user_query is not None:
+                login(request,user_auth)
+                messages.success(request,'You are logged in')
+                next_url=request.GET.get('next','index')
+                return redirect(next_url)
+            else:
+                messages.error(request,'username or password does not exist')
+                return redirect('sign-in')
+
+
+        except:
+            messages.error(request,'username or password does not exist')
+            return redirect('sign-in')
+        
+    return render(request,'userauths/login.html')

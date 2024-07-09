@@ -3,6 +3,9 @@ from . import views
 
 
 urlpatterns = [
-    path('',views.RegisterView,name="sign-up"),
-    path('',views.logout,name='logout')
+    path('sign-up',views.RegisterView,name="sign-up"),
+    path('sign-in',views.loginViewTem,name="sign-in"),
+    path('',views.logOut,name='logOut')
+
+ 
 ]

@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% include "base/base.html" %}
+ 
+
+{% block content %}
     {% if request.user.is_authenticated %}
     <h1>
         welcome back {{request.user.username}}
         
     </h1>
-    <a href="{% url 'logout' %}">logout</a>
+    <a href="{% url "logOut" %}">logout</a>
     {% else %}
 
     <h2>welcome back</h2>
@@ -19,8 +15,9 @@
     <a href="">Login</a>
    
     {% endif %}
+    {% if messages %}
+     <h4>{{messages}}</h4> 
+    {% endif %}
 
     <h3>the project vedio is pused at 41:18 min out of 59:49</h3>
-    
-</body>
-</html>
+    {% endblock content %}

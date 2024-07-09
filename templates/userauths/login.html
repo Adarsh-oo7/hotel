@@ -10,14 +10,18 @@
         <!--   for the form sign-up  -->
         <div class="row  LoginContent">
             <div class="col-12 col-md-6 ">
+                {% for m in messages  %}
+                {{m}}
+                {% endfor %}
                 <div class="formLogin p-3 bg-light">
-                <form action="">
+                <form action="" method="post">
+                    {% csrf_token %}
                     
                     <label for="">Email</label>
-                    <input class="form-control" type="email" placeholder="Email">
+                    <input class="form-control" name='email' type="email" placeholder="Email">
 
                     <label for="">Password:</label>
-                    <input class="form-control" type="password" placeholder="Password">
+                    <input class="form-control" name='password' type="password" placeholder="Password">
 
                     
                     <button class="btn login-btn btn-block mt-3 "><b>Log In</b></button>
