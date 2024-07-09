@@ -1,21 +1,125 @@
+{% load static %}
+
 {% include "base/base.html" %}
- 
 
 {% block content %}
-    {% if request.user.is_authenticated %}
-    <h1>
-        welcome back {{request.user.username}}
+   
+
+
+    <section>
+        <div class="backImg text-center text-white pt-5">
+          <h2 class="mt-5">Book Unique Experiences</h2>
+          <p>Discover top rated hotels,shops and resturants around the world</p>
+          <div class="bg-light  fm-group ">
+          <div class="input-group px-3 " >
+            
+            <input type="text" placeholder="Hotel, City.." class="form-control border-0 mt-2">
+            <input type="date" placeholder="Select Booking Date" class="form-control border-bottom-0 border-top-0 mt-2">
+            <input type="text" placeholder="All Categories" class="form-control mt-2 border-bottom-0 border-top-0 border-right-0">
+            
+              <button class="btn btn-outline-secondary n_btn px-4 my-2" type="button">Search</button>
+            
+          </div>
+        </div>
+        </div>
+        </section>
         
-    </h1>
-    <a href="">logout</a>
-    {% else %}
-
-    <h2>welcome back</h2>
-    <a href="{% url 'sign-up'%}">Register</a>
-    <a href="">Login</a>
-   
-    {% endif %}
-   
-
-    <h3>the project vedio is pused at 41:18 min out of 59:49</h3>
-    {% endblock content %}
+       
+        <section>
+          <div class="text-center pt-5">
+            <h3>Our Popular Tours</h3>
+            <p>Explore the greates places in the City</p>
+        
+            <div class="container-fluid mb-5">
+              <div class="row">
+                <div class="col-md-6 col-lg-6 col-xl-4 my-5">
+                  <div class="card bg-dark text-white">
+                    <img class="card-img" src="{% static "imgs/hotel1.avif" %}" alt="Card image">
+                    <div class="card-img-overlay">
+                      <div class="card-data text-left">
+                        <h4>Grand Hyat Hotal</h4>
+                        <small><i class="fa-solid fa-location-dot pr-2"></i>China Home, international City 4th floor,
+                          Dubai, United Arab Emirates
+                        </small><br>
+                        <small><i class="fa-solid fa-phone pr-2"></i>12345678</small>
+        
+                      </div>
+                      <div class="bg-light text-dark mt-3 pt-3 mx-4 bottom-card ">
+                        <div class="d-flex justify-content-between ">
+                          <div class="ratings pl-4 pr-0">
+                              <i class="fa fa-star rating-color"></i>
+                              <i class="fa fa-star rating-color"></i>
+                              <i class="fa fa-star rating-color"></i>
+                              <i class="fa fa-star rating-color"></i>
+                              <i class="fa fa-star"></i>
+                          </div>
+                          <i class="fa-regular fa-heart pr-5 fa-xl pt-2"></i>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        
+        
+        
+                <div class="col-md-6 col-lg-6 col-xl-4 my-5">
+                  <div class="card bg-dark text-white">
+                    <img class="card-img" src="{% static "imgs/hotel2.jpg" %}" alt="Card image">
+                    <div class="card-img-overlay">
+                      <div class="card-data text-left">
+                        <h4>Grand Hyat Hotal</h4>
+                        <small><i class="fa-solid fa-location-dot pr-2"></i>China Home, international City 4th floor,
+                          Dubai, United Arab Emirates
+                        </small><br>
+                        <small><i class="fa-solid fa-phone pr-2"></i>12345678</small>
+        
+                      </div>
+                      <div class="bg-light text-dark mt-3 pt-3 mx-4 bottom-card ">
+                        <div class="d-flex justify-content-between ">
+                          <div class="ratings pl-4 pr-0">
+                              <i class="fa fa-star rating-color"></i>
+                              <i class="fa fa-star rating-color"></i>
+                              <i class="fa fa-star rating-color"></i>
+                              <i class="fa fa-star rating-color"></i>
+                              <i class="fa fa-star"></i>
+                          </div>
+                          <i class="fa-regular fa-heart pr-5 fa-xl pt-2"></i>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+        
+                <div class="col-md-6 col-lg-6 col-xl-4 my-5">
+                  <div class="card bg-dark text-white">
+                    <img class="card-img" src="{% static "imgs/hotel1.avif" %}" alt="Card image">
+                    <div class="card-img-overlay">
+                      <div class="card-data text-left">
+                        <h4>Grand Hyat Hotal</h4>
+                        <small><i class="fa-solid fa-location-dot pr-2"></i>China Home, international City 4th floor,
+                          Dubai, United Arab Emirates
+                        </small><br>
+                        <small><i class="fa-solid fa-phone pr-2"></i>12345678</small>
+        
+                      </div>
+                      <div class="bg-light text-dark mt-3 pt-3 mx-4 bottom-card ">
+                        <div class="d-flex justify-content-between ">
+                          <div class="ratings pl-4 pr-0">
+                              <i class="fa fa-star rating-color"></i>
+                              <i class="fa fa-star rating-color"></i>
+                              <i class="fa fa-star rating-color"></i>
+                              <i class="fa fa-star rating-color"></i>
+                              <i class="fa fa-star"></i>
+                          </div>
+                          <i class="fa-regular fa-heart pr-5 fa-xl pt-2"></i>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>   
+         {% endblock content %}
