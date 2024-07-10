@@ -1,75 +1,67 @@
-
-{% extends "base/base.html" %}
-
-{% block content %}
+{% extends "base/base.html" %} {% block content %}
 <section>
-    <div class="singUpheader text-center mt-4">
-        <h3 class="">Sign Up</h3>
-        <p>Hi there! Create a free account today.</p>
-    </div>
+  <div class="singUpheader text-center mt-4">
+    <h3 class="">Sign Up</h3>
+    <p>Hi there! Create a free account today.</p>
+  </div>
 
+  <div class="container">
+    <!--   for the form sign-up  -->
+    <div class="row">
+      <div class="col-12 col-sm-6 imgSign"></div>
+      <div class="col-12 col-sm-6">
+        <div class="formSign py-3 px-2 bg-light">
+          {% if form.errors %} {% for field in form %} {% for error in
+          field.errors %}
+          <div class="alert alert-danger alert-dismissible">
+            <strong>{{ error|escape }}</strong>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endfor %} {% endfor %} {% for error in form.non_field_errors %}
+          <div class="alert alert-danger alert-dismissible">
+            <strong>{{ error|escape }}</strong>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endfor %} {% endif %}
+          <form action="" method="post">
+            {% csrf_token %}
+            <label for="">Full Name</label>
+            {{form.full_name}}
+            <label for="">Username</label>
+            {{form.username}}
+            <label for="">Email</label>
+            {{form.email}}
 
+            <label for="">Phone</label>
+            {{form.phone}}
 
+            <label for="">Password1:</label>
+            {{form.password1}}
 
-    <div class="container">
-        <!--   for the form sign-up  -->
-        <div class="row">
-            <div class="col-12 col-sm-6 imgSign">
-                
+            <label for="">password2</label>
+            {{form.password2}}
 
-              
-            </div>
-            <div class="col-12 col-sm-6 ">
-
-                <div class="formSign py-3 px-2 bg-light">
-                    {% if form.errors %}
-                    {% for field in form %}
-                        {% for error in field.errors %}
-                            <div class="alert alert-danger alert-dismissible">
-                                <strong>{{ error|escape }}</strong>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                            </div>
-                        {% endfor %}
-                    {% endfor %}
-                    {% for error in form.non_field_errors %}
-                        <div class="alert alert-danger alert-dismissible">
-                            <strong>{{ error|escape }}</strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-                <form action="" method="post">
-                    {% csrf_token %}
-                    <label for="">Full Name</label>
-                {{form.full_name}}                    
-                    <label for="">Username</label>
-                {{form.username}}
-                    <label for="">Email</label>
-                {{form.email}}
-
-                    <label for="">Phone</label>
-                {{form.phone}}
-
-
-                    <label for="">Password1:</label>
-                {{form.password1}}
-
-                    <label for="">password2</label>
-                {{form.password2}}
-
-                    <button class="btn register-btn btn-block mt-3 " type="submit">REGISTER</button>
-                </form>
-            </div>
-            </div>
-       
-          
+            <button class="btn register-btn btn-block mt-3" type="submit">
+              REGISTER
+            </button>
+          </form>
         </div>
+      </div>
     </div>
-
-
+  </div>
 </section>
 {% endblock content %}

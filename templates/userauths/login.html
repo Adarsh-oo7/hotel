@@ -1,42 +1,41 @@
-{% include "base/base.html" %}
-{% block container %}
+{% include "base/base.html" %} {% block container %}
 <section>
-    <div class="singUpheader text-center mt-4">
-        <h3 class="">Log In</h3>
-        <p>Hi there! Create a free account today.</p>
-    </div>
+  <div class="singUpheader text-center mt-4">
+    <h3 class="">Log In</h3>
+    <p>Hi there! Create a free account today.</p>
+  </div>
 
-    <div class="container">
-        <!--   for the form sign-up  -->
-        <div class="row  LoginContent">
-            <div class="col-12 col-md-6 ">
-                {% for m in messages  %}
-                {{m}}
-                {% endfor %}
-                <div class="formLogin p-3 bg-light">
-                <form action="" method="post">
-                    {% csrf_token %}
-                    
-                    <label for="">Email</label>
-                    <input class="form-control" name='email' type="email" placeholder="Email">
+  <div class="container">
+    <!--   for the form sign-up  -->
+    <div class="row LoginContent">
+      <div class="col-12 col-md-6">
+        {% for m in messages %} {{m}} {% endfor %}
+        <div class="formLogin p-3 bg-light">
+          <form action="" method="post">
+            {% csrf_token %}
 
-                    <label for="">Password:</label>
-                    <input class="form-control" name='password' type="password" placeholder="Password">
+            <label for="">Email</label>
+            <input
+              class="form-control"
+              name="email"
+              type="email"
+              placeholder="Email"
+            />
 
-                    
-                    <button class="btn login-btn btn-block mt-3 "><b>Log In</b></button>
-                </form>
-            </div>
-            </div>
-            <div class="col-12 col-md-6 imgLogin">
-                
+            <label for="">Password:</label>
+            <input
+              class="form-control"
+              name="password"
+              type="password"
+              placeholder="Password"
+            />
 
-              
-
-            </div>
+            <button class="btn login-btn btn-block mt-3"><b>Log In</b></button>
+          </form>
         </div>
+      </div>
+      <div class="col-12 col-md-6 imgLogin"></div>
     </div>
-
-
+  </div>
 </section>
 {% endblock container %}
