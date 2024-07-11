@@ -32,3 +32,99 @@
     background-color: #8A1DFF;
     color: white;
 }
+.carousel-inner{
+    height: 400px;
+    background-position: bottom;
+}
+.box-r{
+    box-shadow: 1px 1px 5px black;
+    margin: 0;
+    padding: 19px;
+}
+.box-l{
+    box-shadow: 1px 1px 5px black;
+    margin: 0;
+    padding: 19px;
+    padding-top: 10%;
+
+}
+.rating-color{
+    color:#fbc634 !important;
+}
+.btn-wish{
+    border: 1px solid rgb(140, 140, 140) !important ;
+    border-radius: 19px !important;
+   
+}
+.colo{
+    color: #8A1DFF !important;
+}
+
+
+
+.inline-group {
+    max-width: 9rem;
+    padding: .5rem;
+  }
+  
+  .inline-group .form-control {
+    text-align: right;
+  }
+  
+  .form-control[type="number"]::-webkit-inner-spin-button,
+  .form-control[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+.calender{
+    padding-top: 10px;
+    padding-left: 11px;
+    background-color: #8A1DFF;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.line{
+    height: 3px;
+    width: 80px;
+    background-color:  #8A1DFF;
+    margin-bottom: 14px;
+
+}
+.table-head{
+    background-color: #8A1DFF;
+    color: white;
+    height: 60px;
+    font-size: x-large;
+
+}
+.img{
+   
+    background-image: url("{% static 'imgs/adarsh.j'%}");
+    background-position: center;
+    background-size: cover;
+    height: 100px;
+    width: 100px ;
+    border-radius: 50%;
+    
+}
+
+/* footer css */
+.footer_link{
+    text-decoration: none;
+    color: black;
+    }
+    
+    .box1{
+        border: 0px solid rgb(239, 231, 231);
+        box-shadow: 0px 1px  10px #b7b6b9;
+        height: 7%;
+    }
+    
+    .box2{
+        padding-top: 5%;
+        padding-bottom: 3%;
+    }
+    

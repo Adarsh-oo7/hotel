@@ -8,3 +8,5 @@ def index(request):
 
 
 
+def hotel(request):
+    return render(request,'hotel\hotel_page.html')

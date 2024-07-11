@@ -1,0 +1,470 @@
+{% load static %}
+{% include "base/base.html" %}
+
+{% block content %}
+<section>
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="{% static "imgs/hotel1.avif" %}" alt="First slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="{%static "imgs/hotel2.jpg" %}" alt="Second slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="{% static "imgs/hotel1.avif" %}" alt="Third slide">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div> 
+
+
+
+      <div class="container-fluid mt-5 mr-0 ml-0 pl-5">
+        <div class="row">
+            <div class="col-12 col-md-8">
+              <div class="box-l">
+                <h3 class="mb-3">Grand Hyat Hotel</h3>
+                <p><i class="fa-solid fa-location-dot pr-2 colo"></i>FORCHINA HOME , International City 4th floor Dubai,United Arab Emrates</p>
+                <p><i class="fa-solid fa-phone pr-2 colo"></i>123456789</p>
+                <div class="d-flex justify-content-between ">
+                  <div class="ratings pl-4 pr-0">
+                      <i class="fa fa-star rating-color"></i>
+                      <i class="fa fa-star rating-color"></i>
+                      <i class="fa fa-star rating-color"></i>
+                      <i class="fa fa-star rating-color"></i>
+                      <i class="fa fa-star"></i>
+                  </div>
+                
+              </div>
+              <div class="ratings mt-4">
+                <button class="btn border mr-3"> <i class="fa-regular fa-heart  fa-xl pt-3 px-2 "></i></button>
+                <button class="btn border"><i class="fa-solid fa-share pt-2 pr-2 colo"></i>share</button>
+             
+            </div>
+            </div>
+
+
+            <div class="container-fluid mx-0 px-0 my-5 ">
+            <h4>Description</h4>
+            <div class="line"></div>
+            <p>The Smart Holiday homes Provides accommodations in Dubai. The homestay features rooms with air conditioning .free private parking and free wt. At the homestay each unit is equipped with a blacony. There's also a fridge . At the homestey. Every unit comes with a wardrobe and a private bathroom.</p>
+            <p><b>The Smart homes has been welcoming Booking.come guests since jul 29,2023</b></p>
+            <p>Destace in property descroption is calculated using </p>
+
+            <button class="btn px-2 border"><i class="fa-solid fa-phone mr-2"></i>12334567890</button>
+            <button class="btn px-2 border"><i class="fa-solid fa-envelope mr-2"></i>abcdef@gmail.com</button>
+
+            <!-- for tag seciton-->
+             <div class="container-fluid mx-0 px-0 my-5" >
+
+              <h4>Tags</h4>
+              <div class="line" style="width: 45px;"></div>
+              <button class="btn border mr-2"><i class="fa-solid fa-tag mr-2"></i>luxury</button>
+              <button class="btn border mr-2"><i class="fa-solid fa-tag mr-2"></i>rooms</button>
+              <button class="btn border mr-2"><i class="fa-solid fa-tag mr-2"></i>hotel</button>
+
+
+             </div>
+
+
+             <!-- for the price section-->
+             <div class="container-fluid mx-0 px-0 my-5" >
+              <h4>Pricing</h4>
+              <div class="line"></div>
+              <table class="table">
+                <thead class="table-head">
+                  <th class="">Room Types</th>
+                  <th></th>
+                </thead>
+                
+                <tbody>
+                  <tr>
+                    <td>  <h5>king</h5>
+                  <small>beds:4  Rooms:7</small></td>
+                  <td class="text-center"><button class="btn border">$50.00</button></td>
+                  
+                </tr>
+
+                <tr>
+                  <td>  <h5>Luxury</h5>
+                <small>beds:3  Rooms:2</small></td>
+                <td class="text-center"><button class="btn border">$50.00</button></td>
+                
+              </tr>
+
+              <tr>
+                <td>  <h5>Economy</h5>
+              <small>beds:2  Rooms:3</small></td>
+              <td class="text-center"><button class="btn border">$50.00</button></td>
+              
+            </tr>
+
+            <tr>
+              <td >  <h5>king</h5>
+            <small>beds:4  Rooms:7</small></td>
+            <td class="text-center"><button class="btn border">$50.00</button></td>
+            
+          </tr>
+
+                </tbody>
+              </table>
+
+              </div>
+
+              <!-- her is the Amenities-->
+               <div class="container-fluid">
+               <h5>Amenities</h5>
+               <div class="line"></div>
+               <div class="container-fluid p-0 m-0">
+                <div class="row">
+                <div class="col-4">
+                  <p><i class="fa-solid fa-wifi pr-2"></i>Free Wifi</p>
+                </div>
+                <div class="col-4">
+                  <p ><i class="fa-solid fa-fan pr-2"></i>Contitioned Air</p>
+                </div>
+                <div class="col-4">
+                  <p><i class="fa-solid fa-tv pr-2"></i>Movie Theater</p>
+                </div>
+              </div>
+               </div>
+              </div>
+            
+
+
+
+
+
+
+            </div>
+            </div>
+            
+
+
+
+
+
+
+
+
+
+
+<!-- here is the right side of the web site-->
+            <div class="col-12 col-md-4">
+              <div class="box-r">
+                <h5><i class="fa-regular fa-calendar-days calender mr-2"></i><b>Booking</b></h5>
+                <hr>
+                <label for="">Check-in date</label>
+                <input type="date" class="form-control" >
+                <label for="">Check-out Date</label>
+                <input type="date" class="form-control" name="" id="">
+                <h6>Guests</h6>
+               
+                <label for="" class="text-center">Adults
+
+
+
+                <div class="input-group inline-group ">
+                  <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary btn-minus">
+                      <i class="fa fa-minus"></i>
+                    </button>
+                  </div>
+                  <input class="form-control quantity" min="0" name="quantity" value="1" type="number">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary btn-plus">
+                      <i class="fa fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+              </label>
+            
+
+
+           
+              <label for="" class="text-center">Children
+
+
+
+              <div class="input-group inline-group  ">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-secondary btn-minus">
+                    <i class="fa fa-minus"></i>
+                  </button>
+                </div>
+                <input class="form-control quantity" min="0" name="quantity" value="1" type="number">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary btn-plus">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </div></label>
+            
+          <br>
+
+                <label for="">Select Room Typle</label>
+                <br>
+                <div class="select is-multiple">
+                <select class="form-control" aria-label=".form-select-lg example">
+                  <option selected>--Select Room--</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+                <br></div>
+                <button class="btn nav_btn btn-block my-2">Check Availability</button>
+                <div class="text-center">
+
+                <button class="btn btn-wish text-enter"><i class="fa-regular fa-heart  fa-md px-2 "></i>Add to Wishlist</button>
+                 </div>
+              </div>
+
+              <div class="box-r mt-4">
+                <h5><i class="fa-solid fa-user calender mr-2"></i> Contact Info</h5>
+                <br>
+                <div class="container-fluid">
+                  <div class="row text-center ">
+                    <div class="col-12  justify-content-center align-items-center d-flex">
+                      <div class="img" ></div>
+
+                    </div>
+                    <div class="col-12  pt-3">
+                      <h6>Adarsh B S</h6>
+                      <small>@adarsh</small>
+                      <br>
+                      <small>Posted on 31 jun 2024</small>
+
+                    </div>
+                  </div>
+                  <hr>
+                  <div>
+                    <button class="btn"><i class="fa-brands fa-facebook-f"></i></button>
+                    <button class="btn"><i class="fa-brands fa-twitter"></i></button>
+                  </div>
+                  <hr>
+                  <h6><i class="fa-solid fa-location-arrow mr-2"></i>Thiruvanthapuram Kerela India </h6>
+                  <hr>
+                  <h6> <i class="fa-solid fa-phone mr-2"></i> +91 3423423424</h6>
+
+                </div>
+                
+
+              </div>
+ 
+<!--- Booking Listing-->
+
+              <div class="box-r mt-4">
+                
+
+                <h5><i class="fa-solid fa-tag calender mr-2"></i>Bookmark Listing</h5>
+                <hr>
+                <small>1 People Bookimarked This Hotel</small>
+              </div>
+
+              <!---Rating Average section-->
+
+              <div class="box-r mt-4">
+                
+
+                <h5><i class="fa-solid fa-star calender mr-2"></i>Bookmark Listing</h5>
+                <hr>
+                <h1 class="colo d-inline">3.0  </h1><small class="colo">/ 5 (1 Reviews)</small>
+                <div class="container-fluid m-0 p-0">
+                  <div class="row">
+                     <div class="col-3">
+                      <small>Quality</small>
+                     </div>
+                     <div class="col-3">
+                      <small>location</small>
+                     </div>
+                     <div class="col-2">
+                      <small>Space</small>
+
+                     </div>
+                     <div class="col-2">
+                      <small>Service</small>
+                     </div>
+                     <div class="col-2">
+                      <small>price</small>
+                     </div>
+                     
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+        </div>
+      </div>
+
+
+      <!--FAQ's-->
+<div class="container-fluid pl-5 mt-4 ">
+  <div class="row">
+    <div class="col-12 col-md-8">
+      <h4>FAQ's</h4>
+      <div class="line " style="width: 50px;"></div>
+
+
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              Accordion Item #1
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+              Accordion Item #2
+            </button>
+          </h2>
+          <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+              Accordion Item #3
+            </button>
+          </h2>
+          <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+          </div>
+        </div>
+      </div>
+
+
+      <!--Reviews seciton-->
+      <div class="container-fluid mt-5">
+        <h5 class="d-inline">Reviews </h5><p class="d-inline">(1)</p>
+        <div class="line"></div>
+        <div class="rating nav_btn text-center p-2" style="width: 120px; height: 50px ; border-radius: 4px;"><h2>3.0/5</h2></div>
+        <div>
+          
+              <div class="border  p-4 m-3">
+              <div class="container">
+            <div class="row">
+              <div class="col-4">
+                
+                <div class="img" style="height: 60px; width: 60px;"></div>
+                
+              </div>
+            
+              <div class="col-8"><h6>Adarsh  3<i class="fa fa-star rating-color pl-1"></i><small>rating</small></h6>
+                <p>Aug 24,2024, 9:45 pm</p>
+                <small>Good Service nice vibe..</small>
+              </div>
+            </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      </div>
+  
+    <div class="col-12 col-md-4"></div>
+  </div>
+
+
+
+
+  <div class="container-fluid box1 bg-light">
+    <div class="container box2">
+    <div class="row">
+        <div class="col-lg-4 col-md-12 ">
+            <h4 class="mb-3">About Us<h4>
+                <div class="line"></div>
+            <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus inventore voluptas quibusdam alias necessitatibus ea temporibus? Eveniet, deleniti excepturi. Mollitia, molestias sint dicta officiis esse sit ipsa obcaecati hic ex.</small>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6 ">
+            <h4 class="mb-3">Useful Links</h4>
+            <div class="line"></div>
+            <a class="footer_link" href="#"><i class="fa-solid fa-angles-right pr-1"></i>Home</a><br>
+            <a class="footer_link" href="#"><i class="fa-solid fa-angles-right pr-1"></i>Listing</a><br>
+            <a class="footer_link" href="#"><i class="fa-solid fa-angles-right pr-1"></i>Blog</a><br>
+            <a class="footer_link" href="#"><i class="fa-solid fa-angles-right pr-1"></i>Privacy Policy</a><br>
+            <a class="footer_link" href="#"><i class="fa-solid fa-angles-right pr-1"></i>Contact</a>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6">
+            <h4 class="mb-3">My Account</h4>
+            <div class="line"></div>
+            <a class="footer_link" href="#"><i class="fa-solid fa-angles-right pr-1"></i>Dasboard</a><br>
+            <a class="footer_link" href="#"><i class="fa-solid fa-angles-right pr-1"></i>Profile</a><br>
+            <a class="footer_link" href="#"><i class="fa-solid fa-angles-right pr-1"></i>My Listing</a><br>
+            <a class="footer_link" href="#"><i class="fa-solid fa-angles-right pr-1"></i>Favorites</a>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6">
+            <h4 class="mb-3">Pages</h4>
+            <div class="line"></div>
+            <a class="footer_link" href="#"><i class="fa-solid fa-angles-right pr-1"></i>Blog</a><br>
+            <a class="footer_link" href="#"><i class="fa-solid fa-angles-right pr-1"></i>Our Partners</a><br>
+            <a class="footer_link" href="#"><i class="fa-solid fa-angles-right pr-1"></i>How It Works</a><br>
+            <a class="footer_link" href="#"><i class="fa-solid fa-angles-right pr-1"></i>Privacy Policy</a>
+        </div>
+        <div class="col-lg-2 col-md-3 col-6">
+            <h4 class="mb-3">Help</h4>
+            <a class="footer_link" href="#"><i class="fa-solid fa-angles-right pr-1"></i>Sign In</a><br>
+            <a class="footer_link" href="#"><i class="fa-solid fa-angles-right pr-1"></i>Register</a><br>
+            <a class="footer_link" href="#"><i class="fa-solid fa-angles-right pr-1"></i>Add Listing</a><br>
+            <a class="footer_link" href="#"><i class="fa-solid fa-angles-right pr-1"></i>Pricing</a><br>
+            <a class="footer_link" href="#"><i class="fa-solid fa-angles-right pr-1"></i>Contact Us</a>
+        </div>
+    </div>
+    </div>
+    </div>
+
+
+
+
+ </section>
+    
+
+{% endblock content %}
+
+
+{% block script %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+ $('.btn-plus, .btn-minus').on('click', function(e) {
+ const isNegative = $(e.target).closest('.btn-minus').is('.btn-minus');
+ const input = $(e.target).closest('.input-group').find('input');
+ if (input.is('input')) {
+   input[0][isNegative ? 'stepDown' : 'stepUp']()
+ }
+})
+</script>
+{% endblock script %}
