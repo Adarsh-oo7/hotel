@@ -111,20 +111,25 @@
     
 }
 
+.tagss{
+    background-color: #6a0bcf;
+    color: white;
+}
+
 /* footer css */
 .footer_link{
     text-decoration: none;
     color: black;
     }
     
-    .box1{
+.box1{
         border: 0px solid rgb(239, 231, 231);
         box-shadow: 0px 1px  10px #b7b6b9;
         height: 7%;
     }
     
-    .box2{
+.box2{
         padding-top: 5%;
         padding-bottom: 3%;
     }
-    
+

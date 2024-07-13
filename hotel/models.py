@@ -4,6 +4,7 @@ from django.utils.html import mark_safe
 from userauths.models import User
 from shortuuid.django_fields import ShortUUIDField
 import shortuuid
+from django_ckeditor_5.fields import CKEditor5Field
 # Create your models here.
 
 HOTEL_STATUS = (
@@ -36,7 +37,7 @@ PAYMENT_STATUS= (
 class Hotel(models.Model):
     user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     name = models.CharField(max_length=100)
-    description = models.TextField(null=True,blank=True)
+    description = CKEditor5Field(null=True,blank=True, config_name='extends')
     image = models.FileField(upload_to='hotel_galley')
     address = models.CharField(max_length=200)
     mobile = models.CharField(max_length=50)

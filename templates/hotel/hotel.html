@@ -38,20 +38,23 @@
     <div class="container-fluid mb-5">
       <div class="row">
 
-        
+        {% for hotel in hotels %}
         <div class="col-md-6 col-lg-6 col-xl-4 my-5">
-          <a href="{% url "hotel_page" %}">
+          <a href="">
           <div class="card bg-dark text-white">
-            <img class="card-img" src="{% static 'imgs/hotel1.avif' %}"
+            <img class="card-img" src="{{hotel.image.url}}"
             alt="Card image">
             <div class="card-img-overlay">
+              {% if hotel.featured == True %}
+              <div style="position: absolute; left: 65%; "><h6 class="tags p-2 px-4">Featured</h6></div>
+              {% endif %}
+              
               <div class="card-data text-left">
-                <h4>Grand Hyat Hotal</h4>
+                <h4>{{hotel.name}}</h4>
                 <small
-                  ><i class="fa-solid fa-location-dot pr-2"></i>China Home,
-                  international City 4th floor, Dubai, United Arab Emirates </small
+                  ><i class="fa-solid fa-location-dot pr-2"></i>{{hotel.address}} </small
                 ><br />
-                <small><i class="fa-solid fa-phone pr-2"></i>12345678</small>
+                <small><i class="fa-solid fa-phone pr-2"></i>{{hotel.mobile}}</small>
               </div>
               <div class="bg-light text-dark mt-3 pt-3 mx-4 bottom-card">
                 <div class="d-flex justify-content-between">
@@ -61,81 +64,26 @@
                     <i class="fa fa-star rating-color"></i>
                     <i class="fa fa-star rating-color"></i>
                     <i class="fa fa-star"></i>
-                  </div>
+                  </div><i class="fa-regular fa-eye"><small class="p-2">{{hotel.views}}</small></i>
                   <i class="fa-regular fa-heart pr-5 fa-xl pt-2"></i>
                 </div>
               </div>
             </div>
           </div>
-        </a>
+       
+         </a>
+        
+        
         </div>
+
+        {% endfor %}
       
 
-        <div class="col-md-6 col-lg-6 col-xl-4 my-5">
-          <a href="{% url "hotel_page" %}">
-          <div class="card bg-dark text-white">
-            <img class="card-img" src="{% static 'imgs/hotel2.jpg' %}" alt="Card
-            image">
-            <div class="card-img-overlay">
-              <div class="card-data text-left">
-                <h4>Grand Hyat Hotal</h4>
-                <small
-                  ><i class="fa-solid fa-location-dot pr-2"></i>China Home,
-                  international City 4th floor, Dubai, United Arab Emirates </small
-                ><br />
-                <small><i class="fa-solid fa-phone pr-2"></i>12345678</small>
-              </div>
-              <div class="bg-light text-dark mt-3 pt-3 mx-4 bottom-card">
-                <div class="d-flex justify-content-between">
-                  <div class="ratings pl-4 pr-0">
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star"></i>
-                  </div>
-                  <i class="fa-regular fa-heart pr-5 fa-xl pt-2"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
-        </div>
-
-        <div class="col-md-6 col-lg-6 col-xl-4 my-5">
-        <a href="{% url "hotel_page" %}">
-          <div class="card bg-dark text-white">
-            <img class="card-img" src="{% static 'imgs/hotel1.avif' %}"
-            alt="Card image">
-            <div class="card-img-overlay">
-              <div class="card-data text-left">
-                <h4>Grand Hyat Hotal</h4>
-                <small
-                  ><i class="fa-solid fa-location-dot pr-2"></i>China Home,
-                  international City 4th floor, Dubai, United Arab Emirates </small
-                ><br />
-                <small><i class="fa-solid fa-phone pr-2"></i>12345678</small>
-              </div>
-              <div class="bg-light text-dark mt-3 pt-3 mx-4 bottom-card">
-                <div class="d-flex justify-content-between">
-                  <div class="ratings pl-4 pr-0">
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star rating-color"></i>
-                    <i class="fa fa-star"></i>
-                  </div>
-                  <i class="fa-regular fa-heart pr-5 fa-xl pt-2"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
-        </div>
-
+       
 
 
       </div>
+      
     </div>
   </div>
 </section>

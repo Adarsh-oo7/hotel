@@ -240,3 +240,37 @@ JAZZMIN_UI_TWEAKS = {
         "success": "btn-success"
     }
 }
+
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        'toolbar': [
+            ['Source', '-', 'Save', 'NewPage', 'Preview', '-', 'Templates'],
+            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print', 'SpellChecker', 'Scayt'],
+            ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'],
+            ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'],
+            '/',
+            ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'],
+            '/',
+            ['Styles', 'Format', 'Font', 'FontSize'],
+            ['TextColor', 'BGColor', 'BorderColor'],
+            ['Maximize', 'ShowBlocks'],
+            ['CodeSnippet', 'Comment']
+        ],
+        'height': 300,
+        'width': '100%',
+        'extraPlugins': ','.join([
+            'codesnippet',
+            'comment',
+            'colorbutton',
+        ]),
+        'colorButton_colors': '1ABC9C,16A085,2ECC71,27AE60,3498DB,2980B9,9B59B6,8E44AD,34495E,2C3E50,F1C40F,F39C12,E67E22,D35400,E74C3C,C0392B,ECF0F1,BDC3C7,95A5A6,7F8C8D',
+        'colorButton_enableMore': True,
+    },
+}
