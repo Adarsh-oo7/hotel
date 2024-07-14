@@ -5,6 +5,7 @@ from userauths.models import User
 from shortuuid.django_fields import ShortUUIDField
 import shortuuid
 from django_ckeditor_5.fields import CKEditor5Field
+from taggit.managers import TaggableManager
 # Create your models here.
 
 HOTEL_STATUS = (
@@ -44,7 +45,7 @@ class Hotel(models.Model):
     email = models.EmailField(max_length=110)
     status = models.CharField(max_length=20,choices=HOTEL_STATUS ,default='Live')
 
-    tag=models.CharField(max_length=200,help_text='Seperate tags with comma')
+    tag=TaggableManager(blank=True)
     views=models.IntegerField(default=0)
     featured=models.BooleanField(default=False)
     hid = ShortUUIDField(unique=True, length=10, max_length=20, alphabet='abcdefghijklmnopqrstuvwxyz')
@@ -53,7 +54,7 @@ class Hotel(models.Model):
 
 
     def __str__(self):
-        return self.name
+        return self.name 
     
     def save(self,*args, **kwargs):
         if self.slug == "" or self.slug == None:
@@ -66,12 +67,15 @@ class Hotel(models.Model):
 
     def thumbnail(self):
         return mark_safe('<img src = "%s" width="50" height="50" style="object-fil: cover; border-radius: 6px:" />' %(self.image.url))
+    
+    def hotel_gallery(self):
+        return HotelGallery.objects.filter(hotel=self)
 
 
 
 class HotelGallery(models.Model):
-    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
-    image = models.FileField(upload_to='hotel_galley')
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE,related_name='gallery_items')
+    image = models.FileField(upload_to='hotel_gallery')
     hgid = ShortUUIDField(unique=True, length=10, max_length=20, alphabet='abcdefghijklmnopqrstuvwxyz')
 
     def __str__(self):
