@@ -141,14 +141,14 @@ class RoomType(models.Model):
 
 class Room(models.Model):
     hotel = models.ForeignKey(Hotel,on_delete=models.CASCADE,related_name='rooms')
-    room_type=models.ForeignKey(Hotel, on_delete=models.CASCADE,related_name='room_types')
+    room_type=models.ForeignKey(RoomType, on_delete=models.CASCADE,related_name='room_types')
     room_number = models.CharField(max_length=1000)
     is_available= models.BooleanField(default=True)
     rid = ShortUUIDField(unique=True, length=10, max_length=20, alphabet='abcdefghijklmnopqrstuvwxyz')
     date = models.DateTimeField(auto_now_add=False)
 
     def __str__(self):
-        return f"{self.type} - {self.hotel.name} - {self.price}"
+        return f"{self.room_type} - {self.hotel.name} - {self.date}"
 
     class Meta:
         verbose_name_plural = "Rooms"
