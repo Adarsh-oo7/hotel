@@ -52,7 +52,6 @@ class Hotel(models.Model):
     slug= models.SlugField(unique=True)
     date= models.DateTimeField(auto_now_add=True)
 
-
     def __str__(self):
         return self.name 
     
