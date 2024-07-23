@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'hotel',
     'user_dashboard',
     'userauths',
+    'booking',
 
 
     #third part app

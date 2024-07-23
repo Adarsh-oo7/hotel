@@ -1,0 +1,120 @@
+{% extends "base/base.html" %} {% block content %}
+
+<div class="container text-center mt-5 pt-3">
+  <h2>All Available Rooms</h2>
+  <small>The {{room_type.type}}room has {{rooms.count}} availabe room(s)</small>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <div class="container m-0 p-0">
+        <div class="row d-flex justify-content-center align-items-center">
+          {% for r in rooms %}
+          <div class="col-4 border mt-5 rounded px-0">
+            <div class="col-12 text-center nav_btn py-5 my-0">
+              <h3>Room No.{{r.room_number}}</h3>
+              <h5 class="d-inline">{{r.room_type.price}}$</h5>
+              <small>/per Night</small>
+            </div>
+            <div class="col-12 text-center mt-5">
+              <p>Bed:{{r.room_type.number_of_beds}}</p>
+              <hr />
+              <p>Room capacity:{{r.room_type.room_capacity}}</p>
+              <hr />
+              <button class="btn nav_btn mb-4">
+                add To <br />
+                Selection
+              </button>
+            </div>
+          </div>
+
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="box-r">
+        <h5>
+          <i class="fa-regular fa-calendar-days calender mr-2"></i
+          ><b>Booking</b>
+        </h5>
+        <hr />
+        <label for="">Check-in date</label>
+        <input type="date" class="form-control" />
+        <label for="">Check-out Date</label>
+        <input type="date" class="form-control" name="" id="" />
+        <h6>Guests</h6>
+
+        <label for="" class="text-center"
+          >Adults
+
+          <div class="input-group inline-group">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary btn-minus">
+                <i class="fa fa-minus"></i>
+              </button>
+            </div>
+            <input
+              class="form-control quantity"
+              min="0"
+              name="quantity"
+              value="1"
+              type="number"
+            />
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary btn-plus">
+                <i class="fa fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </label>
+
+        <label for="" class="text-center"
+          >Children
+
+          <div class="input-group inline-group">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary btn-minus">
+                <i class="fa fa-minus"></i>
+              </button>
+            </div>
+            <input
+              class="form-control quantity"
+              min="0"
+              name="quantity"
+              value="1"
+              type="number"
+            />
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary btn-plus">
+                <i class="fa fa-plus"></i>
+              </button>
+            </div></div
+        ></label>
+
+        <br />
+
+        <label for="">Select Room Typle</label>
+        <br />
+        <div class="select is-multiple">
+          <select class="form-control" aria-label=".form-select-lg example">
+            <option selected>--Select Room--</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+          <br />
+        </div>
+        <button class="btn nav_btn btn-block my-2">Check Availability</button>
+        <div class="text-center">
+          <button class="btn btn-wish text-enter">
+            <i class="fa-regular fa-heart fa-md px-2"></i>Add to Wishlist
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
