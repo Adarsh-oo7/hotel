@@ -155,10 +155,15 @@
               <div class="box-r">
                 <h5><i class="fa-regular fa-calendar-days calender mr-2"></i><b>Booking</b></h5>
                 <hr>
+                <form class="" method="POST" action="{% url 'booking:check_room_availability' %}">
+                  {% csrf_token %}
+
+                  <!-- hotel_id -->
+                  <input type="text" id="" name="hotel-id" value="{{hotel.id}}">
                 <label for="">Check-in date</label>
-                <input type="date" class="form-control" >
+                <input type="date" name="checkin" class="form-control" >
                 <label for="">Check-out Date</label>
-                <input type="date" class="form-control" name="" id="">
+                <input type="date" class="form-control" name="checkout" >
                 <h6>Guests</h6>
                
                 <label for="" class="text-center">Adults
@@ -167,15 +172,15 @@
 
                 <div class="input-group inline-group ">
                   <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary btn-minus">
+                    <span class="btn btn-outline-secondary btn-minus">
                       <i class="fa fa-minus"></i>
-                    </button>
+                    </span>
                   </div>
-                  <input class="form-control quantity" min="0" name="quantity" value="1" type="number">
+                  <input class="form-control quantity" min="0" name="adult" value="1" type="number">
                   <div class="input-group-append">
-                    <button class="btn btn-outline-secondary btn-plus">
+                    <span class="btn btn-outline-secondary btn-plus">
                       <i class="fa fa-plus"></i>
-                    </button>
+                    </span>
                   </div>
                 </div>
               </label>
@@ -189,15 +194,15 @@
 
               <div class="input-group inline-group  ">
                 <div class="input-group-prepend">
-                  <button class="btn btn-outline-secondary btn-minus">
+                  <span class="btn btn-outline-secondary btn-minus">
                     <i class="fa fa-minus"></i>
-                  </button>
+                  </span>
                 </div>
-                <input class="form-control quantity" min="0" name="quantity" value="1" type="number">
+                <input class="form-control quantity" min="0" name="children" value="1" type="number">
                 <div class="input-group-append">
-                  <button class="btn btn-outline-secondary btn-plus">
+                  <span class="btn btn-outline-secondary btn-plus">
                     <i class="fa fa-plus"></i>
-                  </button>
+                  </span>
                 </div>
               </div></label>
             
@@ -206,11 +211,10 @@
                 <label for="">Select Room Typle</label>
                 <br>
                 <div class="select is-multiple">
-                <select class="form-control" aria-label=".form-select-lg example">
-                  <option selected>--Select Room--</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                <select class="form-control" name='room_type' aria-label=".form-select-lg example">
+                  {% for r  in hotel.hotel_room_types  %}
+                  <option value='{{r.slug}}'>{{r.type}}</option>
+                  {% endfor %}
                 </select>
                 <br></div>
                 <button class="btn nav_btn btn-block my-2">Check Availability</button>
@@ -218,6 +222,8 @@
 
                 <button class="btn btn-wish text-enter"><i class="fa-regular fa-heart  fa-md px-2 "></i>Add to Wishlist</button>
                  </div>
+
+                </form>
               </div>
 
               <div class="box-r mt-4">

@@ -40,6 +40,8 @@
           ><b>Booking</b>
         </h5>
         <hr />
+        <form class="" method="POST" action="{% url 'booking:check_room_availability' %}">
+          {% csrf_token %}
         <label for="">Check-in date</label>
         <input type="date" class="form-control" />
         <label for="">Check-out Date</label>
@@ -112,7 +114,12 @@
             <i class="fa-regular fa-heart fa-md px-2"></i>Add to Wishlist
           </button>
         </div>
+
+      </form>
+
+
       </div>
+
     </div>
   </div>
 </div>
