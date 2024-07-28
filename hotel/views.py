@@ -23,10 +23,27 @@ def room_type_detail(request, slug,rt_slug):
     room_type= RoomType.objects.get(hotel=hotel,slug=rt_slug)
     rooms= Room.objects.filter(room_type=room_type, is_available=True)
 
+    id=request.GET.get('hotel-id')
+    checkin=request.GET.get('checkin')
+    checkout=request.GET.get('checkout')
+    adutl=request.GET.get('adult')
+    children=request.GET.get('children')
+
+
+
+
+
+
+    print('id===',id)
+
     context={
         'hotel':hotel,
         'room_type':room_type,
-        'rooms':rooms
+        'rooms':rooms,
+        'checkin':checkin,
+        'checkout':checkout,
+        'adult':adutl,
+        'children':children
 
     }
     return render(request,'hotel/room_type_detail.html',context)

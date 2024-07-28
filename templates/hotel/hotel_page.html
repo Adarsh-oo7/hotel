@@ -159,7 +159,7 @@
                   {% csrf_token %}
 
                   <!-- hotel_id -->
-                  <input type="text" id="" name="hotel-id" value="{{hotel.id}}">
+                <input type="hidden" id="" name="hotel-id" value="{{hotel.id}}">
                 <label for="">Check-in date</label>
                 <input type="date" name="checkin" class="form-control" >
                 <label for="">Check-out Date</label>

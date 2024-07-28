@@ -7,11 +7,12 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-8">
+    <div class="col-md-8 col-12">
       <div class="container m-0 p-0">
-        <div class="row d-flex justify-content-center align-items-center">
+        <div class="row d-flex justify-content-center ">
           {% for r in rooms %}
-          <div class="col-4 border mt-5 rounded px-0">
+
+          <div class="col-4  border mt-5 mb-3  px-0">
             <div class="col-12 text-center nav_btn py-5 my-0">
               <h3>Room No.{{r.room_number}}</h3>
               <h5 class="d-inline">{{r.room_type.price}}$</h5>
@@ -22,6 +23,15 @@
               <hr />
               <p>Room capacity:{{r.room_type.room_capacity}}</p>
               <hr />
+
+
+              <div>
+
+              <input type="text" class="room_id_{{r.id}}" value="{{r.id}}" id='room_id' >
+              <input type="text" class="room_number_{{r.id}}" value="{{r.room_number}}" id="room_number">
+              </div>
+
+
               <button class="btn nav_btn mb-4">
                 add To <br />
                 Selection
@@ -30,10 +40,24 @@
           </div>
 
           {% endfor %}
+
+          <input type="text" value="{{hotel.id}}" id="id">
+          <input type="text" value="{{hotel.name}}" id="hotel_name">
+          <input type="text" value="{{room_type.type}}" id="room_name">
+          <input type="text" value="{{room_type.price}}" id="room_price">
+          <input type="text" value="{{room_type.number_of_beds}}" id="number_of_beds">
+          <input type="text" value="{{room_type.id}}" id="room_type">
+          <input type="text" value="{{checkin}}" id="checkin">
+          <input type="text" value="{{checkout}}" id="checkout">
+          <input type="text" value="{{adult}}" id="adult">
+          <input type="text" value="{{children}}" id="children">
+
+
+
         </div>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-md-4 col-12">
       <div class="box-r">
         <h5>
           <i class="fa-regular fa-calendar-days calender mr-2"></i
@@ -42,80 +66,73 @@
         <hr />
         <form class="" method="POST" action="{% url 'booking:check_room_availability' %}">
           {% csrf_token %}
+
+          <!-- hotel_id -->
+          <input type="hidden" id="" name="hotel-id" value="{{hotel.id}}">
         <label for="">Check-in date</label>
-        <input type="date" class="form-control" />
+        <input type="date" name="checkin" class="form-control" >
         <label for="">Check-out Date</label>
-        <input type="date" class="form-control" name="" id="" />
+        <input type="date" class="form-control" name="checkout" >
         <h6>Guests</h6>
+       
+        <label for="" class="text-center">Adults
 
-        <label for="" class="text-center"
-          >Adults
 
-          <div class="input-group inline-group">
-            <div class="input-group-prepend">
-              <button class="btn btn-outline-secondary btn-minus">
-                <i class="fa fa-minus"></i>
-              </button>
-            </div>
-            <input
-              class="form-control quantity"
-              min="0"
-              name="quantity"
-              value="1"
-              type="number"
-            />
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary btn-plus">
-                <i class="fa fa-plus"></i>
-              </button>
-            </div>
+
+        <div class="input-group inline-group ">
+          <div class="input-group-prepend">
+            <span class="btn btn-outline-secondary btn-minus">
+              <i class="fa fa-minus"></i>
+            </span>
           </div>
-        </label>
+          <input class="form-control quantity" min="0" name="adult" value="1" type="number">
+          <div class="input-group-append">
+            <span class="btn btn-outline-secondary btn-plus">
+              <i class="fa fa-plus"></i>
+            </span>
+          </div>
+        </div>
+      </label>
+    
 
-        <label for="" class="text-center"
-          >Children
 
-          <div class="input-group inline-group">
-            <div class="input-group-prepend">
-              <button class="btn btn-outline-secondary btn-minus">
-                <i class="fa fa-minus"></i>
-              </button>
-            </div>
-            <input
-              class="form-control quantity"
-              min="0"
-              name="quantity"
-              value="1"
-              type="number"
-            />
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary btn-plus">
-                <i class="fa fa-plus"></i>
-              </button>
-            </div></div
-        ></label>
+   
+      <label for="" class="text-center">Children
 
-        <br />
+
+
+      <div class="input-group inline-group  ">
+        <div class="input-group-prepend">
+          <span class="btn btn-outline-secondary btn-minus">
+            <i class="fa fa-minus"></i>
+          </span>
+        </div>
+        <input class="form-control quantity" min="0" name="children" value="1" type="number">
+        <div class="input-group-append">
+          <span class="btn btn-outline-secondary btn-plus">
+            <i class="fa fa-plus"></i>
+          </span>
+        </div>
+      </div></label>
+    
+  <br>
 
         <label for="">Select Room Typle</label>
-        <br />
+        <br>
         <div class="select is-multiple">
-          <select class="form-control" aria-label=".form-select-lg example">
-            <option selected>--Select Room--</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-          <br />
-        </div>
+        <select class="form-control" name='room_type' aria-label=".form-select-lg example">
+          {% for r  in hotel.hotel_room_types  %}
+          <option value='{{r.slug}}'>{{r.type}}</option>
+          {% endfor %}
+        </select>
+        <br></div>
         <button class="btn nav_btn btn-block my-2">Check Availability</button>
         <div class="text-center">
-          <button class="btn btn-wish text-enter">
-            <i class="fa-regular fa-heart fa-md px-2"></i>Add to Wishlist
-          </button>
-        </div>
 
-      </form>
+        <button class="btn btn-wish text-enter"><i class="fa-regular fa-heart  fa-md px-2 "></i>Add to Wishlist</button>
+         </div>
+
+        </form>
 
 
       </div>
