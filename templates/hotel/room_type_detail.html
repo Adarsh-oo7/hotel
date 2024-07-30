@@ -27,12 +27,12 @@
 
               <div>
 
-              <input type="text" class="room_id_{{r.id}}" value="{{r.id}}" id='room_id' >
-              <input type="text" class="room_number_{{r.id}}" value="{{r.room_number}}" id="room_number">
+              <input type="text" class="room_id_{{r.id}} form-control" value="{{r.id}}" id='room_id' >
+              <input type="text" class="room_number_{{r.id}} form-control" value="{{r.room_number}}" id="room_number">
               </div>
 
 
-              <button class="btn nav_btn mb-4">
+              <button class="btn nav_btn mb-4 mt-3">
                 add To <br />
                 Selection
               </button>
@@ -41,16 +41,16 @@
 
           {% endfor %}
 
-          <input type="text" value="{{hotel.id}}" id="id">
-          <input type="text" value="{{hotel.name}}" id="hotel_name">
-          <input type="text" value="{{room_type.type}}" id="room_name">
-          <input type="text" value="{{room_type.price}}" id="room_price">
-          <input type="text" value="{{room_type.number_of_beds}}" id="number_of_beds">
-          <input type="text" value="{{room_type.id}}" id="room_type">
-          <input type="text" value="{{checkin}}" id="checkin">
-          <input type="text" value="{{checkout}}" id="checkout">
-          <input type="text" value="{{adult}}" id="adult">
-          <input type="text" value="{{children}}" id="children">
+          <input class="form-control" type="text" value="{{hotel.id}}" id="id">
+          <input class="form-control" type="text" value="{{hotel.name}}" id="hotel_name">
+          <input class="form-control" type="text" value="{{room_type.type}}" id="room_name">
+          <input class="form-control" type="text" value="{{room_type.price}}" id="room_price">
+          <input class="form-control" type="text" value="{{room_type.number_of_beds}}" id="number_of_beds">
+          <input class="form-control" type="text" value="{{room_type.id}}" id="room_type">
+          <input class="form-control" type="text" value="{{checkin}}" id="checkin">
+          <input class="form-control" type="text" value="{{checkout}}" id="checkout">
+          <input class="form-control" type="text" value="{{adult}}" id="adult">
+          <input class="form-control" type="text" value="{{children}}" id="children">
 
 
 
@@ -142,3 +142,19 @@
 </div>
 
 {% endblock content %}
+
+{% block script %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+ $('.btn-plus, .btn-minus').on('click', function(e) {
+ const isNegative = $(e.target).closest('.btn-minus').is('.btn-minus');
+ const input = $(e.target).closest('.input-group').find('input');
+ if (input.is('input')) {
+   input[0][isNegative ? 'stepDown' : 'stepUp']()
+ }
+})
+</script>
+{% endblock script %}
