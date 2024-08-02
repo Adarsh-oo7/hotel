@@ -36,6 +36,35 @@ $(document).ready(function(){
         console.log(adult)
         console.log(children)
 
+        $.ajax({
+            url:'/booking/add_to_selection',
+            data:{
+                'id':id,
+                'hotel_id':hotel_id,
+                'room_id':room_id,
+                'room_number':room_number,
+                'hotel_name':hotel_name,
+                'room_name':room_name,
+                'room_type':room_type,
+                'room_price':room_price,
+                'number_of_beds':number_of_beds,
+                'checkin':checkin,
+                'checkout':checkout,
+                'adult':adult,
+                'children':children,
+
+            },
+            dataType: "json",
+            beforeSend:function(){
+                console.log("sending data to server")
+            },
+            success: function(response){
+                console.log(response)
+            }
+        
+
+        })
+
     })
 
 })

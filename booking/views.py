@@ -53,7 +53,7 @@ def add_to_selection(request):
 
     data= {
         'data':request.session['selection_data_obj'],
-        'total_selection_item':request.session['selection_data_obj']
+        'total_selection_items': len(request.session['selection_data_obj'])
 
     }
     return JsonResponse(data)
