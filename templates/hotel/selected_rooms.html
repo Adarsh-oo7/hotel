@@ -1,0 +1,130 @@
+{% load static %}
+{% include "base/base.html" %}
+
+{% block content %}
+
+<section>
+
+</section>
+
+<section>
+    <div class="container-fluid mt-5 baseContainer">
+        <div class="row">
+            <div class="col-12 col-md-8 mb-4 ">
+                <div class="container border p-4">
+                    <h4><i class="fa-solid fa-bed  calender small m" ></i>&nbsp;Selected Rooms</h4>
+                    <hr>
+                    {% for id,item in data.items  %}
+                    <div class="container-fluid">
+                        
+                        <div class="row">
+                            <div class="col-9">
+                                <h5>Room: {{item.room_name}}</h5>
+                              <small>Beds:{{item.number_of_beds}}</small>
+                            </div>
+                            <div class="col-3">
+                                <button class="btn border">${{item.room_price}}</button>
+                            </div>
+                              
+                        </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                   
+                </div>
+                <div class="container border mt-5 p-4 ">
+                    <h4 class="mt-4"><i class="fa-solid fa-user calender mr-2"></i> Billing Information</h4>
+                    <hr>
+                    <form action="">
+                        <label for="First Name">First Name</label>
+                        <input type="text" placeholder="First Name" class="form-control">
+                        <div class="row my-3">
+                            <div class="col">
+                                <label for="e-mail">E-Mail</label>
+                              <input type="text" class="form-control" placeholder="First name">
+                            </div>
+                            <div class="col">
+                                <label for="Phone">Phone</label>
+                              <input type="text" class="form-control" placeholder="Last name">
+                            </div>
+                          </div>
+                          <button class="btn nav_btn mb-3">Continue to checkout</button>
+                    </form>
+                    
+
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="container">
+                    <div class="row imgss pt-5" style="background-image: url('{{hotel.image.url}}');">
+
+                        <div class="card-data text-left text-light mt-5 pt-5">
+                            <h4>{{hotel.name}}</h4>
+                            <small><i class="fa-solid fa-location-dot colo pr-2"></i>&nbsp;&nbsp;{{hotel.address}}</small>
+                            <br>
+                            <small><i class="fa-solid fa-phone colo pr-2 mr-1"></i>{{hotel.mobile}}</small>
+                          <div class="d-flex justify-content-between ">
+                            <div class="ratings pl-4 pr-0">
+                                <i class="fa fa-star rating-color"></i>
+                                <i class="fa fa-star rating-color"></i>
+                                <i class="fa fa-star rating-color"></i>
+                                <i class="fa fa-star rating-color"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                           
+                           </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row border">
+                        <h5 class="mt-4"><i class="fa-regular fa-calendar-days calender mr-2"></i>&nbsp;&nbsp;Booking Summary</h5>
+                        
+                        <div class="container-fluid">
+                             <div class="row"><hr>
+                                <div class="col-6">
+                                    <p>Check-in</p>
+                                    <p>Check-Out</p>
+                                    <p>Total Days</p>
+                                    <p>Adults</p>
+                                    <p>Children</p>
+                                    <p>V.A.T</p>
+                                </div>
+                                <div class="col-6">
+                                    <p>{{checkin}}</p>
+                                    <p>{{checkout}}</p>
+                                    <p>{{total_days}} Days</p>
+                                    <p>{{adult}} Adult</p>
+                                    <p>{{children}} Children</p>
+                                    <p>$0.00</p>
+                                </div>
+                             </div>
+                             <hr>
+                             <div class="row py-3">
+                                <div class="col-6"><h5>Total Cost</h5></div>
+                                <div class="col-6"><h5 class="colo">${{total}}</h5></div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

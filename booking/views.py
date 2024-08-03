@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.urls import reverse
+from django.contrib import messages
 from hotel.models import Hotel, Booking, ActivityLog, StaffOnDuty, Room, RoomType 
 from django.http import HttpResponseRedirect,JsonResponse
 # Create your views here.

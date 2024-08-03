@@ -237,3 +237,17 @@ nav {
     border-radius: 7px;
   
 }
+
+
+
+.imgss{
+    background-position: center;
+    background-size: cover;
+    height: 300px;
+  }
+  @media only screen and (min-width:950px){
+    .baseContainer{
+      padding-right: 90px;
+      padding-left: 90px;
+    }
+  }
