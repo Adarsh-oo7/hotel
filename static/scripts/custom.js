@@ -68,3 +68,30 @@ $(document).ready(function(){
     })
 
 })
+
+
+// Delete Items From Cart
+
+$(document).on("click", ".delete-item", function(){
+    console.log('delected')
+    let id = $(this).attr("data-item")
+    console.log(id)
+    let button = $(this)
+
+    $.ajax({
+        url: "/booking/delete_selection/",
+        data:{
+            'id':id
+
+        },
+        dataType: "json",
+        beforeSend:function(){
+            button.html(`<div class="spinner-border" role="status">
+  <span class="sr-only">Loading...</span>
+</div>`)
+        },
+        success:function(res){
+            console.log(res)
+        }
+    })
+})

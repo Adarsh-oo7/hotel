@@ -163,6 +163,7 @@ class Room(models.Model):
 class Booking(models.Model):
     user = models.ForeignKey(User,on_delete=models.SET_NULL ,null=True,blank=True)
     payment_status = models.CharField(max_length=100, choices=PAYMENT_STATUS)
+    coupons=models.ManyToManyField('hotel.Coupon', blank=True)
 
     full_name = models.CharField(max_length=1000)
     email = models.EmailField(max_length=254)
@@ -221,6 +222,21 @@ class StaffOnDuty(models.Model):
 
     def __str__(self):
         return f"{self.staff_id}"
+    
+class Coupon(models.Model):
+    code = models.CharField(max_length=1000)
+    type = models.CharField(max_length=100, default="presentage")
+    discount = models.IntegerField(default=1)
+    redemptions = models.IntegerField(default=0)
+    date = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+    valid_from = models.DateTimeField()
+    valid_to = models.DateTimeField()
+    cid = ShortUUIDField(unique=True,length=10, max_length=20, alphabet='abcdefghijklmnopqrstuvwxyz')
+
+    def __str__(self):
+        return f"{self.code}"
+
     
 
 

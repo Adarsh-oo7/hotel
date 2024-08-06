@@ -38,13 +38,13 @@ def RegisterView(request):
 def logOut(request):
     logout(request)
     messages.success(request,'You have been logged out')
-    return redirect('index')
+    return redirect('hotel:index')
 
 def loginViewTem(request):
     if request.user.is_authenticated:
         print('hellow')
         messages.warning(request,'your are already logged in')
-        return redirect('index')
+        return redirect('hotel:index')
     
     if request.POST:
         email=request.POST.get('email')

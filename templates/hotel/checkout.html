@@ -14,16 +14,17 @@
                 <div class="container border p-4">
                     <h4><i class="fa-solid fa-bed  calender small m" ></i>&nbsp;Selected Rooms</h4>
                     <hr>
-                    {% for id,item in data.items  %}
+                    {% for r in booking.room.all  %}
                     <div class="container-fluid">
                         
                         <div class="row">
                             <div class="col-9">
-                                <h5>Room: {{item.room_name}} <a style="cursor: pointer" class="delete-item ml-5 " data-item="{{id}}"><i class="fa-solid fa-trash text-danger"></i></a> </h5>
-                              <small>Beds:{{item.number_of_beds}}</small>
+                                <h5>Room: {{r.room_type.type}} <a style="cursor: pointer" class="delete-item ml-5 " data-item="{{id}}"><i class="fa-solid fa-trash text-danger"></i></a> </h5>
+                              <small>Beds:{{r.room_type.number_of_beds}}</small> <br>
+                              <small>Room Number:{{r.room_number}}</small>
                             </div>
                             <div class="col-3">
-                                <button class="btn border">${{item.room_price}}</button>
+                                <button class="btn border">${{r.room_type.price}}</button>
                             </div>
                               
                         </div>
@@ -38,15 +39,15 @@
                     <form action="" method="POST">
                         {% csrf_token %}
                         <label for="First Name">First Name</label>
-                        <input type="text" placeholder="First Name" name="full_name" class="form-control">
+                        <input type="text" placeholder="First Name" name="full_name" class="form-control" value='{{booking.full_name}}' style='background: rgb(227,227,227)'>
                         <div class="row my-3">
                             <div class="col">
                                 <label for="e-mail">E-Mail</label>
-                              <input name="email" type="text" class="form-control" placeholder="First name">
+                              <input name="email" type="text" class="form-control" placeholder="First name" value='{{booking.email}}' style='background: rgb(227,227,227)'>
                             </div>
                             <div class="col">
                                 <label for="Phone">Phone</label>
-                              <input name="phone" type="text" class="form-control" placeholder="Last name">
+                              <input name="phone" type="text" class="form-control" placeholder="Last name" value='{{booking.phone}}' style='background: rgb(227,227,227)'>
                             </div>
                           </div>
                           <button class="btn nav_btn mb-3">Continue to checkout</button>
@@ -57,13 +58,13 @@
             </div>
             <div class="col-12 col-md-4 mb-4">
                 <div class="container">
-                    <div class="row imgss pt-5" style="background-image: url('{{hotel.image.url}}');">
+                    <div class="row imgss pt-5" style="background-image: url('{{booking.hotel.image.url}}');">
 
                         <div class="card-data text-left text-light mt-5 pt-5">
-                            <h4>{{hotel.name}}</h4>
-                            <small><i class="fa-solid fa-location-dot colo pr-2"></i>&nbsp;&nbsp;{{hotel.address}}</small>
+                            <h4>{{booking.hotel.name}}</h4>
+                            <small><i class="fa-solid fa-location-dot colo pr-2"></i>&nbsp;&nbsp;{{booking.hotel.address}}</small>
                             <br>
-                            <small><i class="fa-solid fa-phone colo pr-2 mr-1"></i>{{hotel.mobile}}</small>
+                            <small><i class="fa-solid fa-phone colo pr-2 mr-1"></i>{{booking.hotel.mobile}}</small>
                           <div class="d-flex justify-content-between ">
                             <div class="ratings pl-4 pr-0">
                                 <i class="fa fa-star rating-color"></i>
@@ -85,25 +86,63 @@
                                 <div class="col-6">
                                     <p>Check-in</p>
                                     <p>Check-Out</p>
-                                    <p>Total Days</p>
+                                    <p>Total Days</P>
+                                    
                                     <p>Adults</p>
                                     <p>Children</p>
-                                    <p>V.A.T</p>
+                                    <p>Discount</p>
+                                   
                                 </div>
                                 <div class="col-6">
-                                    <p>{{checkin}}</p>
-                                    <p>{{checkout}}</p>
-                                    <p>{{total_days}} Days</p>
-                                    <p>{{adult}} Adult</p>
-                                    <p>{{children}} Children</p>
-                                    <p>$0.00</p>
+                                    <p>{{booking.check_in_date}}</p>
+                                    <p>{{booking.check_out_date}}</p>
+                                    <P>{{booking.total_days}}Days</p>
+                                    
+                                    <p>{{booking.num_adults}} Adult</p>
+                                    <p>{{booking.num_children}} Children</p>
+                                    <p>-$ {{booking.saved}} </p>
+                                   
                                 </div>
                              </div>
                              <hr>
+                             
+                                <div class="container-fluid">
+                                    <div class="row">
+                                    <form  method="post">
+                                            {% csrf_token %}
+                                    
+                                       
+                                        <div class="col-8 m-0 p-0 ">
+                                            <input type="text" class="form-control m-0 p-0 " id="coupenCode" name="code" placeholder=" Enter Your coupen Code">
+                              
+                                        </div>
+                                        <div class="col-4 8 m-0 p-0 ">
+                                            <button type="submit" class="btn btn-primary ">Apply</button>
+
+                                        </div>
+                                    </form>
+                                    
+                                    </div>
+                                </div>
+   
+                                
+                            
+
+                              <hr>
+
                              <div class="row py-3">
                                 <div class="col-6"><h5>Total Cost</h5></div>
-                                <div class="col-6"><h5 class="colo">${{total}}</h5></div>
+                                <div class="col-6"><h5 class="colo">${{booking.total}}</h5></div>
                              </div>
+
+                             <div class="container text-center">
+                                <button style="background-color: rgb(193, 193, 21);" class="btn text-light btn-block"><strong class="mb-2 pt-0 mt-0">Pay with </strong><i class="fa-brands fa-2x fa-google-pay  ml-3"></i></button>
+                                <button  class="btn nav_btn btn-block">Pay with striper <i class="fa-solid fa-credit-card my-2"></i> </button>
+
+                             </div>
+
+
+
                         </div>
                     </div>
                 </div>

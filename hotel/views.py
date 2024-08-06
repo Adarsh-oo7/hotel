@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Hotel, Booking, ActivityLog, StaffOnDuty, Room, RoomType 
+from .models import Hotel, Booking, ActivityLog, StaffOnDuty, Room, RoomType ,Coupon
 from django.contrib import messages
 
 from datetime import datetime
@@ -63,11 +63,89 @@ def selected_rooms(request):
 
 
     if 'selection_data_obj' in request.session:
+
+        if request.method=='POST':
+            for h_id,item in request.session['selection_data_obj'].items():
+                id = int(item['hotel_id'])
+                checkin = item['checkin']
+                checkout = item['checkout']
+                adult = int(item['adult'])
+                children = int(item['children'])
+                room_type_= int(item['room_type'])
+                room_id = int(item['room_id'])
+
+                user = request.user
+                hotel = Hotel.objects.get(id=id)
+                room= Room.objects.get(id=room_id)
+                room_type= RoomType.objects.get(id=room_type_)
+
+            date_format ="%Y-%m-%d"
+            checkin_date= datetime.strptime(checkin,date_format)
+            checkout_date = datetime.strptime(checkout,date_format)
+            time_diffrence= checkout_date - checkin_date
+            total_days_= time_diffrence.days
+     
+
+            full_name=request.POST['full_name']
+            email=request.POST['email']
+            phone=request.POST['phone']
+
+            booking = Booking.objects.create(
+                hotel=hotel,
+                room_type=room_type,
+                check_in_date=checkin,
+                check_out_date=checkout,
+                total_days=total_days_,
+                num_adults=adult,
+                num_children=children,
+                full_name=full_name,
+                email=email,
+                phone=phone,
+                user=request.user or None
+            )
+
+            # if request.user.is_authenticated:
+            #     booking.user=request.user
+            #     booking.save()
+            # else:
+            #     booking.user == None
+            #     booking.save()
+
+            for h_id,item in request.session['selection_data_obj'].items():
+                room_id = int(item['room_id'])
+                room = Room.objects.get(id=room_id)
+                booking.room.add(room)
+
+                room_count += 1
+                days = total_days_
+                price = room_type.price
+
+                room_price = price * room_count
+                total = room_price * days
+
+            booking.total += float(total)
+           
+            booking.before_discount += float(total)
+            booking.save()
+
+            messages.success(request, "check out Now")
+
+            return redirect('hotel:checkout',booking.booking_id)
+            
+           
+
+            
+
+
+
+
+
         hotel = None
         for h_id,item in request.session['selection_data_obj'].items():
             id = int(item['hotel_id'])
             checkin = item['checkin']
             checkout = item['checkout']
+            adult = int(item['adult'])
             children = int(item['children'])
             room_type= int(item['room_type'])
             room_id = int(item['room_id'])
@@ -112,3 +190,41 @@ def selected_rooms(request):
    
 
 
+def checkout(request, booking_id):
+    booking = Booking.objects.get(booking_id=booking_id)
+    if request.method == "POST":
+
+        code = request.POST['code']
+        
+        try:
+            coupon = Coupon.objects.get(code__iexact=code, active= True)
+            if coupon in booking.coupons.all():
+                print('coupon is alredy taken')
+                messages.warning(request,"Coupon already Activate")
+                return redirect('hotel:checkout', booking.booking_id)
+            else:
+                if coupon.type == 'percentage':
+                    discount = booking.total * coupon.discount / 100
+                else:
+                    discount = coupon.discount
+
+                booking.coupons.add(coupon)
+                booking.total -= discount
+                booking.saved += discount
+                booking.save()
+                print("coupon is valid")
+                messages.success(request, 'Coupon Activated')
+                return redirect('hotel:checkout', booking.booking_id)
+        except:
+            print("coupon does not esists")
+            messages.error(request,"Coupon doesn't exist")
+            return redirect('hotel:checkout', booking.booking_id)
+
+
+        
+    
+    context= {
+
+        'booking':booking
+    }
+    return render(request,'hotel/checkout.html',context)

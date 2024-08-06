@@ -99,7 +99,7 @@
                     <td>  <h5>{{r.type}}</h5>
                   <small>Room Capacity {{r.room_capacity}}</small><br>
                   <small>Number of beds {{r.number_of_beds}}</small><br>
-                  <small><a href="{% url 'room_type_detail' r.hotel.slug r.slug %}" style="border-bottom:1px gray dashed">View More</a></small>                </td>
+                  <small><a href="{% url 'hotel:room_type_detail' r.hotel.slug r.slug %}" style="border-bottom:1px gray dashed">View More</a></small>                </td>
                   <td class="text-center"><button class="btn border">${{r.price}}</button></td>
                   
                 </tr>
