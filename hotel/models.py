@@ -194,7 +194,7 @@ class Booking(models.Model):
     
     date = models.DateTimeField(auto_now_add=True)
     strip_payment_intent = models.CharField(max_length=1000, null=True, blank=True)
-    success_id = models.CharField(max_length=1000, null=True , blank=True)
+    success_id = ShortUUIDField(unique=True, length=10, max_length=20, alphabet='abcdefghijklmnopqrstuvwxyz', null=True , blank=True)
     booking_id=  ShortUUIDField(unique=True, length=10, max_length=20, alphabet='abcdefghijklmnopqrstuvwxyz')
 
     def __str__(self):

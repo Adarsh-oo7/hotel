@@ -134,10 +134,11 @@
                                 <div class="col-6"><h5>Total Cost</h5></div>
                                 <div class="col-6"><h5 class="colo">${{booking.total}}</h5></div>
                              </div>
+                             <div id="paypal-button-container"></div>
 
                              <div class="container text-center">
                                 <button style="background-color: rgb(193, 193, 21);" class="btn text-light btn-block"><strong class="mb-2 pt-0 mt-0">Pay with </strong><i class="fa-brands fa-2x fa-google-pay  ml-3"></i></button>
-                                <button  class="btn nav_btn btn-block">Pay with striper <i class="fa-solid fa-credit-card my-2"></i> </button>
+                                <button id="checkout-button"  class="btn nav_btn btn-block">Pay with striper <i class="fa-solid fa-credit-card my-2"></i> </button>
 
                              </div>
 
@@ -171,10 +172,66 @@
 
 
 {% block script %}
+<script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+<script src="https://js.stripe.com/v3/"></script>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{% static 'scripts/custom.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+<script>
+    let booking_total="{{booking.total}}"
+    let booking_id = "{{booking.booking_id}}"
+    let success_id = "{{booking.success_id}}"
+    paypal.Buttons({
+        createOrder: function(date, actions){
+            return actions.order.create({
+               purchase_units: [{
+                amount:{
+                    value: booking_total                    
+                }
+               }]
+            })
+        },
+        anApprove: function(data,actions){
+            return actions.order.capture().then(function(Detail){
+                console.log(Detail);
+                if (Detail.status == "COMPLETED"){
+                    // REDIRECT TO THE success page
+                    window.location.href = `/success/${booking_id}/?success=${success_id}&payer_id=${Detail.id}&status=${Detail.status}&booking_total=${booking_total}`
+                }
+            });
+        },
+    })
+    .render("#paypal-button-container")
+</script>
 
+
+<script>
+    var stripe = Stripe('{{stripe_publishable_key}}')
+    var checkoutButton = document.getElementById("checkout-button")
+
+    checkoutButton.addEventListener('click',function(){
+        var email ="{{booking.email}}"
+
+        checkoutButton.innerHTML = "Processing <i class='fas fa-spinner fa-spin'></i>"
+
+        fetch('/api/create_checkout_session/{{booking.booking_id}}',{
+                method:"POST",
+                body:JSON.stringify(
+                    {email:email}
+                )
+            }).then(function(response){
+                console.log(response)
+                return response.json
+            }
+        )
+
+
+
+        console.log(email)
+        console.log(stripe)
+    })
+</script>
 {% endblock script %}

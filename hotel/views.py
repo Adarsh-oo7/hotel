@@ -1,8 +1,12 @@
 from django.shortcuts import render,redirect
 from .models import Hotel, Booking, ActivityLog, StaffOnDuty, Room, RoomType ,Coupon
 from django.contrib import messages
-
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+import stripe 
 from datetime import datetime
+from django.urls import reverse
+from django.http import JsonResponse
 # Create your views here.
 
 
@@ -225,6 +229,49 @@ def checkout(request, booking_id):
     
     context= {
 
-        'booking':booking
+        'booking':booking,
+        'stripe_publishable_key':settings.STRIPE_PUBLIC_KEY,
+
     }
     return render(request,'hotel/checkout.html',context)
+
+
+
+
+@csrf_exempt
+def create_checkout_session(request,booking_id):
+    booking = Booking.objects.get(booking_id= booking_id)
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+
+    checkout_session = stripe.checkout.Session.create(
+        customer_email= booking.email,
+        payment_method_types=['card'],
+        line_items=[
+            {
+                'price_data':{
+                    'currency':'USD',
+                    'product_data':{
+                        'name':booking.full_clean
+                    },
+                    'unit_amount':int(booking.total*100)
+                },
+                'quantity':1
+            }
+        ],
+        mode='payment',
+        success_url=request.build_absolute_uri(reverse("hotel:success", args=[booking.booking_id])) + '?session_id{CHECKOUT_SESSION_ID}&success_id='+booking.success_id+'&booking_total='+str(booking.total),cancel_url=request.build_absolute_uri(reverse("hotel:failed", args=[booking.booking_id]))
+    )
+
+    booking.payment_status = 'Procession'
+    booking.strip_payment_intent = checkout_session['id']
+    booking.save()
+
+    print('check session', checkout_session)
+    return JsonResponse({'sessionId':checkout_session.id})
+
+ 
+def payment_SUCCESS(request,booking_id):
+    pass
+
+def payment_faild(request,booking_id):
+    pass

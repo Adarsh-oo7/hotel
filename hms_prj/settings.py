@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from django.contrib.messages import constants as messages
 from pathlib import Path
 import os
+from environs import Env
+env = Env()
+env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,6 +30,7 @@ SECRET_KEY = 'django-insecure-3c*(ssikkn@-2%9wo@p+$6jc@6&d3c&^z)j_7^bfndz(v)fqmr
 DEBUG = True
 
 ALLOWED_HOSTS = []
+SECURE_CROSS_ORIGIN_OPENER_POLICY='same-origin-allow-popups'
 
 
 # Application definition
@@ -158,6 +162,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL='userauths.User'
+
+
+STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
+STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
+
+
+
 
 JAZZMIN_SETTINGS = {
     'site_header': "Welcome Thor",
