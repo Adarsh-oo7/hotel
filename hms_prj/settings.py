@@ -169,6 +169,9 @@ STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
 
 
 
+LOGIN_URL ="userauths:sign-in"
+LOGOUT_REDIRECT_URL = "userauths:sign-in"
+
 
 JAZZMIN_SETTINGS = {
     'site_header': "Welcome Thor",
@@ -220,6 +223,11 @@ JAZZMIN_SETTINGS = {
 
     "show_ui_builder" : True
 }
+
+
+
+
+
 
 JAZZMIN_UI_TWEAKS = {
     "navbar_small_text": False,

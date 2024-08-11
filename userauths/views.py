@@ -60,11 +60,11 @@ def loginViewTem(request):
                 return redirect(next_url)
             else:
                 messages.error(request,'username or password does not exist')
-                return redirect('sign-in')
+                return redirect('userauths:sign-in')
 
 
         except:
             messages.error(request,'username or password does not exist')
-            return redirect('sign-in')
+            return redirect('userauths:sign-in')
         
     return render(request,'userauths/login.html')

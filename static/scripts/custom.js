@@ -95,3 +95,18 @@ $(document).on("click", ".delete-item", function(){
         }
     })
 })
+
+
+
+function makeAjaxCall(){
+    $.ajax({
+        url:"/update_room_status/",
+        type: "GET",
+        success: function(data){
+            console.log("checked Rooms")
+        },
+        
+    })
+}
+
+setInterval(makeAjaxCall, 3000)

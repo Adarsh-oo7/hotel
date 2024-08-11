@@ -9,6 +9,8 @@ urlpatterns = [
     path('detail/<slug:slug>/room-type/<slug:rt_slug>/',views.room_type_detail,name="room_type_detail"),
     path('selected_rooms/',views.selected_rooms,name='selected_rooms'),
     path('checkout/<booking_id>',views.checkout, name='checkout'),
+    path('update_room_status/',views.update_room_status, name='update_room_status'),
+
 
 
     # Payment routes

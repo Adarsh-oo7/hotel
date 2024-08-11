@@ -1,5 +1,5 @@
-from django.shortcuts import render,redirect
-from .models import Hotel, Booking, ActivityLog, StaffOnDuty, Room, RoomType ,Coupon
+from django.shortcuts import render,redirect,HttpResponse
+from .models import Hotel, Booking, ActivityLog, StaffOnDuty, Room, RoomType ,Coupon,Notification
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
@@ -7,6 +7,11 @@ import stripe
 from datetime import datetime
 from django.urls import reverse
 from django.http import JsonResponse
+from decimal import Decimal
+from django.utils import timezone
+
+
+
 # Create your views here.
 
 
@@ -105,7 +110,8 @@ def selected_rooms(request):
                 full_name=full_name,
                 email=email,
                 phone=phone,
-                user=request.user or None
+                user=request.user or None,
+                payment_status="Processing"
             )
 
             # if request.user.is_authenticated:
@@ -198,7 +204,7 @@ def checkout(request, booking_id):
     booking = Booking.objects.get(booking_id=booking_id)
     if request.method == "POST":
 
-        code = request.POST['code']
+        code = request.POST.get('code')
         
         try:
             coupon = Coupon.objects.get(code__iexact=code, active= True)
@@ -262,7 +268,7 @@ def create_checkout_session(request,booking_id):
         success_url=request.build_absolute_uri(reverse("hotel:success", args=[booking.booking_id])) + '?session_id{CHECKOUT_SESSION_ID}&success_id='+booking.success_id+'&booking_total='+str(booking.total),cancel_url=request.build_absolute_uri(reverse("hotel:failed", args=[booking.booking_id]))
     )
 
-    booking.payment_status = 'Procession'
+    booking.payment_status = 'Processing'
     booking.strip_payment_intent = checkout_session['id']
     booking.save()
 
@@ -271,7 +277,98 @@ def create_checkout_session(request,booking_id):
 
  
 def payment_SUCCESS(request,booking_id):
-    pass
+    success_id = request.GET.get('success_id')
+    booking_total = request.GET.get('booking_total')
+
+    if success_id and booking_id:
+        success_id = success_id.rstrip('/')
+        booking_total = booking_total.rstrip('/')
+
+        booking = Booking.objects.get(booking_id= booking_id,success_id=success_id)
+
+        if booking.total == Decimal(booking_total):
+            if booking.payment_status == "Processing":      
+                booking.payment_status = "Paid"
+                booking.is_active = True
+                booking.save()
+
+                noti= Notification.objects.create(
+                    booking=booking,
+                    type="Booking Confirmed",
+
+                )
+                if request.user.is_authenticated:
+                    noti.user = request.user
+                else:
+                    noti.user = None
+                noti.save()
+
+
+                if 'selection_data_obj' in request.session:
+                    del request.session['selection_data_obj']
+
+
+
+
+            else:
+                messages.success(request,"Payment made already, thanks for your patronage")
+        else:
+            messages.error(request,"hotel/payment_success.html")
+
+    context={
+        'booking':booking
+    }
+
+    return render(request,'hotel/payment_success.html',context)
 
 def payment_faild(request,booking_id):
-    pass
+    return HttpResponse("Payment failed")
+
+@csrf_exempt
+def update_room_status(request):
+    today = timezone.now().date()
+
+    booking = Booking.objects.filter(is_acitve=True, payment_status="Paid")
+    for b in booking:
+        if b.checked_in_tracker != True:
+            if b.check_in_date> today:
+                b.checked_in_tracker = False
+                b.check_in = False
+                b.save()
+
+                for r in b.room.all():
+                    r.is_available = True
+                    r.save()
+            
+            else:
+                b.checked_in_tracker = True
+                b.check_in = True
+                b.save()
+
+                for r in b.room.all():
+                    r.is_available = False
+                    r.save()
+        
+        else:
+            if b.check_out_date>today:
+                b.checked_out_tracker = False
+                b.check_in = False
+                b.save()
+
+                for r in b.room.all():
+                    r.is_available = False
+                    r.save()
+            
+            else:
+                b.check_out_date = True
+                b.check_in = True
+                b.save()
+
+                for r in b.room.all():
+                    r.is_available = True
+                    r.save()
+
+    return HttpResponse(today)
+
+    
+

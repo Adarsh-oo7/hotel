@@ -1,0 +1,38 @@
+{% load static %}
+{% include "base/base.html" %}
+
+{% block content %}
+
+<section>
+    <div class="container text-center mt-5">
+
+        <img src="/static/imgs/success.webp" alt="" width="150px" class="mt-5">
+        <h3>Checkout & Payment Successfull!</h3>
+        <p>We have sent booking summary to <b>{{booking.email}}</b> and Your booking id is <b>{{booking.booking_id}}</b> Thank you.</p>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-6">
+                    <button class="btn btn-block nav_btn">Vist Dashbord</button>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-block nav_btn">View Invoice</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock content %}
+
+
+{% block script %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'scripts/custom.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+{% endblock script %}
