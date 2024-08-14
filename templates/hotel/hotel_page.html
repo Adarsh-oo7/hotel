@@ -55,8 +55,15 @@
                 
               </div>
               <div class="ratings mt-4">
-                <button class="btn border mr-3"> <i class="fa-regular fa-heart  fa-xl pt-3 px-2 "></i></button>
-                <button class="btn border"><i class="fa-solid fa-share pt-2 pr-2 colo"></i>share</button>
+                {% if bookmark %}
+                <a  data-hotel="{{hotel.id}}" class="btn border add-to-bookmark-{{hotel.id}} mr-1" id='add-to-bookmark' > <i class="fa-solid fa-heart  fa-xl pt-3 px-2 " style="color:red;"></i></a>
+                {% else %}
+                <a   data-hotel="{{hotel.id}}" class="btn border add-to-bookmark-{{hotel.id}} mr-1" id='add-to-bookmark' > <i class="fa-solid fa-heart  fa-xl pt-3 px-2"  style="color:gray;"></i></a>
+
+                {% endif %}
+                <button class="btn border mr-1"><i class="fa-solid fa-share pt-2 pr-2 colo"></i>share</button>
+                <button class="btn border mr-1"> <i class="fa-regular fa-bookmark  fa-xl pt-3 px-2 "></i>Bookmark</button>
+
              
             </div>
             </div>
@@ -443,10 +450,61 @@
  </section>
     
 
+
+<script>
+$(document).on("click","#add-to-bookmark",function(){
+    let button = $(this)
+    let id = button.attr('data-hotel');
+    console.log(id)
+    console.log('hellow')
+    $.ajax({
+        url:"/dashboard/add_to_bookmark",
+        beforeSend:function(){
+            console.log("Add to bookmark..");
+        },
+        data:{
+            "id":id
+        },
+        success: function(res){
+            if(res.data == "Bookmark Deleted"){
+              button.html('<i class="fa-solid fa-heart  fa-xl pt-3 px-2 " style="color:gray;"></i>')
+            }
+            else{
+              button.html('<i class="fa-solid fa-heart  fa-xl pt-3 px-2 " style="color:red;"></i>')
+
+
+            }
+
+            if(res.data == "Login To Bookmark Hotel"){
+              alert("login to Bookmark Hotel")
+            }
+
+            const Toast = Swal.mixin({
+              toast:true,
+              position: "top",
+              showConfirmButton: false,
+              timer:3000,
+
+            })
+            Toast.fire({
+              icon: res.icon,
+              title: res.data
+            })
+        }
+
+    })
+
+})  
+
+</script>
+
+
 {% endblock content %}
 
 
 {% block script %}
+<script src="{% static 'scripts/custom.js' %}"></script>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

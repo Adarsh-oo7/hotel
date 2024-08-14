@@ -14,6 +14,7 @@
 <script src="https://kit.fontawesome.com/df8ea3872c.js" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="{% static "css/style.css" %}">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 <style>
@@ -37,95 +38,59 @@
     <!--Container Main start-->
     <div class="height-100 bg-light">
         <div class="container-fluid d"></div>
-        
-        
-    <section class="top">
-        <div class="container-fluid d-flex justify-content-between mt-3 border-bottom pb-4">
-            <h5 class="mb-0">Dashboard</h5>
-            <div class="ms-auto">hi adarsh</div>
 
-        </div>
-    </section>
-    <section class="box mt-4">
-        <div class="container-fluid">
-            <div class="row text-white text-center justify-content-center">
-                <div class="col-3 border nav_btn ml-5  pb-4">
-                    
-                    <i class="fa-regular fa-circle-check fa-5x my-4"></i>
-                    <h5>{{bookings.count}}</h5>
-                    <small>Total Paid Booking</small>
+       <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="bg-dark text-light p-3">
+                    <h5>Notifications</h5>
                 </div>
-                <div class="col-3 border bg-info ml-4 dataCol pb-4">
-                    <i class="fa-solid fa-dollar-sign fa-5x my-4"></i>
-                   <h5>{{total_spent.amount}}</h5>
-                   <small>total spent</small> 
+                 
+
+                {% for n in notifications %}
+                <div class="col-12 border"> 
+                    {% if n.type == "Booking Confirmed" %}
+                    <div class="col-12 alert alert-success alert-dismissible fade show " role="alert">
+                        <p><i class="fas fa-bell"></i>  Your booking {{n.booking.booking_id}} has been placed successfully.</p>
+                        <a href="{% url 'user_dashboard:notification_mark_as_seen' n.id %}" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </a>
+                      </div>
+                      {% else %}
+                      <div class="col-12 alert alert-danger alert-dismissible fade show " role="alert">
+                        <p><i class="fas fa-bell"></i>  Your booking {{n.booking.booking_id}} has been cancelled .</p>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+
+                      {% endif %}
                 </div>
-                <div class="col-3 border bg-warning ml-4 dataCol pb-4">
-                    <i class="fa-solid fa-wallet fa-4x my-4"></i>
-                    <h5>{{request.user.profile.wallet}}</h5>
-                   <small> Wallet Balance</small> 
-                </div>
+                {% endfor %}
 
             </div>
-
         </div>
-
-    </section> 
-
-    <section class="listing mt-5">
-        <table class="table">
-            <thead class="thead-dark">
-
-               
-              <tr>
-                <th scope="col" class="text-center">Booking</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">S/N</th>
-                <th scope="col">Hotel Name</th>
-                <th scope="col">Total Rooms</th>
-                <th scope="col">Booking Date</th>
-                <th scope="col">Payment Status</th>
-                <th scope="col">View Booking</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for b in bookings %}
-              <tr>
-                <th scope="row">{{forloop.counter}}</th>
-                <td>{{b.hotel.name}}</td>
-                <td>{{b.room.all.count}}</td>
-                <td>{{b.date}}</td>
-                <td>{{b.payment_status}}</td>
-                <td><a href="{% url 'user_dashboard:booking_detail' b.booking_id %}"><i class="fa fa-eye"></i>View</a>views</td>
-              </tr>
-              {% endfor %}
-          
-            </tbody>
-          </table>
+       </div>
 
 
-        <div class="container-fluid p-0 m-0">
-            <div class="p-0 m-0 bg-dark text-white px-4 py-2 "><h5>All Booking Invoices</h5></div>
-           {% for b in bookings%}
-            <div class="container pt-4">
-                <h6><b>{{b.hotel.name}}</b> <span>{{b.payment_status}}</span></h6>
-                <p><b>Order Number:-</b> {{b.booking_id}} | <b>Date:-</b>{{b.date}}</p>
-                
-            </div>
-            <hr>
-            {% endfor %}
-        </div>
-    </section>
 
+
+
+
+
+
+
+
+       <script>
+        {% for message in messages %}
+          Swal.fire({
+            icon:"{{ message.tags }}",
+            title:"{{ message }}",
+            text:"{{message.tags}}",
+            timer: 1500
+          });
+        {% endfor %}
+      </script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

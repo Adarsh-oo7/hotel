@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,HttpResponse
-from .models import Hotel, Booking, ActivityLog, StaffOnDuty, Room, RoomType ,Coupon,Notification
+from .models import Hotel, Booking, ActivityLog, StaffOnDuty, Room, RoomType ,Coupon,Notification,Bookmark
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
@@ -25,8 +25,13 @@ def index(request):
 
 def hotel_detail(request,slug):
     hotel=Hotel.objects.get(status='Live',slug=slug)
+
+    if request.user.is_authenticated:
+        bookmark = Bookmark.objects.filter(user=request.user, hotel=hotel)
+
     context={
-        'hotel':hotel
+        'hotel':hotel,
+        'bookmark':bookmark
     }
     return render(request,'hotel/hotel_page.html',context)
 

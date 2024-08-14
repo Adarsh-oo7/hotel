@@ -37,94 +37,86 @@
     <!--Container Main start-->
     <div class="height-100 bg-light">
         <div class="container-fluid d"></div>
-        
-        
-    <section class="top">
-        <div class="container-fluid d-flex justify-content-between mt-3 border-bottom pb-4">
-            <h5 class="mb-0">Dashboard</h5>
-            <div class="ms-auto">hi adarsh</div>
 
-        </div>
-    </section>
-    <section class="box mt-4">
-        <div class="container-fluid">
-            <div class="row text-white text-center justify-content-center">
-                <div class="col-3 border nav_btn ml-5  pb-4">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <div class="bg-dark text-light p-2">
+                    <h5>Booking ID: {{booking.booking_id}}</h5>
+                </div>
+                <div class="left-content border p-3">
+                    <h5>{{booking.full_name|title}}<span class="bg-success ml-2">{{booking.payment_status|title}}</span></h5>
+                    <p><b>Hotel Name: </b> {{booking.hotel.name}}</p>
+                    <p><b>Hotel Address: </b> {{booking.hotel.address}}</p>
+                    <p><b>Hotel Email: </b> {{booking.hotel.email}}</p>
+                    <p><b>Hotel Phone: </b> {{booking.hotel.mobile}}</p>
+
+                    <hr>
+
+                    <p><b>Checkin Date: </b> {{booking.check_in_date}}</p>
+                    <p><b>Checkout Date: </b> {{booking.check_out_date}}</p>
+                <p><b>Total Days: </b> {{booking.total_days}}</p>
+                    <p><b>Adults : </b> {{booking.num_adults}}</p>
+                    <p><b>Children: </b> {{booking.num_children}}</p>
+
+                    <hr>
+
+                    <p><b>Full Name:</b> {{booking.full_name}}</p>
+                    <p><b>Email address:</b>{{booking.email}}</p>
+                    <p><b>Phone Number:</b> {{booking.phone}}</p>
+
+                    <hr>
+
+                    <p><b>Price:</b> {{booking.total}}</p>
+
+                    <hr>
+
+                    <p><b>Price:</b> {{booking.date}}</p>
+
+
+
+
+                </div>
+
+
+            </div>
+            <div class="col-6">
+                <div class="bg-dark text-light p-2">
+                    <h5>Booked Rooms({{booking.room.all.count}})</h5>
+                </div>
+                    <div class="right_content  border p-3">
+                        {% for r in booking.room.all %}
+                        <h5>{{r.room_type.type}}</h5>
+                        <p><b>Room Number:</b> {{r.room_number}}</p>
+                        <p><b>Room Price:</b> {{r.room_type.price}} $</p>
+
+                        <hr>
+
+                        {% endfor %}
                     
-                    <i class="fa-regular fa-circle-check fa-5x my-4"></i>
-                    <h5>{{bookings.count}}</h5>
-                    <small>Total Paid Booking</small>
                 </div>
-                <div class="col-3 border bg-info ml-4 dataCol pb-4">
-                    <i class="fa-solid fa-dollar-sign fa-5x my-4"></i>
-                   <h5>{{total_spent.amount}}</h5>
-                   <small>total spent</small> 
-                </div>
-                <div class="col-3 border bg-warning ml-4 dataCol pb-4">
-                    <i class="fa-solid fa-wallet fa-4x my-4"></i>
-                    <h5>{{request.user.profile.wallet}}</h5>
-                   <small> Wallet Balance</small> 
-                </div>
-
             </div>
-
         </div>
+    </div>
 
-    </section> 
-
-    <section class="listing mt-5">
-        <table class="table">
-            <thead class="thead-dark">
-
-               
-              <tr>
-                <th scope="col" class="text-center">Booking</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">S/N</th>
-                <th scope="col">Hotel Name</th>
-                <th scope="col">Total Rooms</th>
-                <th scope="col">Booking Date</th>
-                <th scope="col">Payment Status</th>
-                <th scope="col">View Booking</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for b in bookings %}
-              <tr>
-                <th scope="row">{{forloop.counter}}</th>
-                <td>{{b.hotel.name}}</td>
-                <td>{{b.room.all.count}}</td>
-                <td>{{b.date}}</td>
-                <td>{{b.payment_status}}</td>
-                <td><a href="{% url 'user_dashboard:booking_detail' b.booking_id %}"><i class="fa fa-eye"></i>View</a>views</td>
-              </tr>
-              {% endfor %}
-          
-            </tbody>
-          </table>
+        
+        
 
 
-        <div class="container-fluid p-0 m-0">
-            <div class="p-0 m-0 bg-dark text-white px-4 py-2 "><h5>All Booking Invoices</h5></div>
-           {% for b in bookings%}
-            <div class="container pt-4">
-                <h6><b>{{b.hotel.name}}</b> <span>{{b.payment_status}}</span></h6>
-                <p><b>Order Number:-</b> {{b.booking_id}} | <b>Date:-</b>{{b.date}}</p>
-                
-            </div>
-            <hr>
-            {% endfor %}
-        </div>
-    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

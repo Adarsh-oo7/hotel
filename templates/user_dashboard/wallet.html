@@ -14,6 +14,7 @@
 <script src="https://kit.fontawesome.com/df8ea3872c.js" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="{% static "css/style.css" %}">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 <style>
@@ -37,95 +38,68 @@
     <!--Container Main start-->
     <div class="height-100 bg-light">
         <div class="container-fluid d"></div>
+
+
+            <div class="container-fluid">
+                <div class="row text-center text-light justify-content-center">
+                    <div class="col-4 m-3 p-3 bg-primary">
+                        <i class="fa-solid fa-dollar-sign fa-5x my-3"></i>
+                        <h4>$ {{total_spent.amount}}</h4>
+                        <p class="pb-0 mb-0">Total Spent</p>
+                    </div>
+                    <div class="col-4 m-3 p-3 bg-info">
+                        <i class="fa-solid fa-wallet fa-4x my-4"></i>
+
+                        <h4>$ {{wallet_balance}}</h4>
+                        <p>wallet Balance</p>
+                    </div>
         
-        
-    <section class="top">
-        <div class="container-fluid d-flex justify-content-between mt-3 border-bottom pb-4">
-            <h5 class="mb-0">Dashboard</h5>
-            <div class="ms-auto">hi adarsh</div>
-
-        </div>
-    </section>
-    <section class="box mt-4">
-        <div class="container-fluid">
-            <div class="row text-white text-center justify-content-center">
-                <div class="col-3 border nav_btn ml-5  pb-4">
-                    
-                    <i class="fa-regular fa-circle-check fa-5x my-4"></i>
-                    <h5>{{bookings.count}}</h5>
-                    <small>Total Paid Booking</small>
                 </div>
-                <div class="col-3 border bg-info ml-4 dataCol pb-4">
-                    <i class="fa-solid fa-dollar-sign fa-5x my-4"></i>
-                   <h5>{{total_spent.amount}}</h5>
-                   <small>total spent</small> 
-                </div>
-                <div class="col-3 border bg-warning ml-4 dataCol pb-4">
-                    <i class="fa-solid fa-wallet fa-4x my-4"></i>
-                    <h5>{{request.user.profile.wallet}}</h5>
-                   <small> Wallet Balance</small> 
+           </div>
+           <div class="container ">
+            <div class="row">
+                <div class="col-12"></div>
+                <div class="bg-dark text-light p-3">
+                    <h5>Spending History</h5>
                 </div>
 
-            </div>
 
-        </div>
-
-    </section> 
-
-    <section class="listing mt-5">
-        <table class="table">
-            <thead class="thead-dark">
-
-               
-              <tr>
-                <th scope="col" class="text-center">Booking</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">S/N</th>
-                <th scope="col">Hotel Name</th>
-                <th scope="col">Total Rooms</th>
-                <th scope="col">Booking Date</th>
-                <th scope="col">Payment Status</th>
-                <th scope="col">View Booking</th>
-              </tr>
-            </thead>
-            <tbody>
                 {% for b in bookings %}
-              <tr>
-                <th scope="row">{{forloop.counter}}</th>
-                <td>{{b.hotel.name}}</td>
-                <td>{{b.room.all.count}}</td>
-                <td>{{b.date}}</td>
-                <td>{{b.payment_status}}</td>
-                <td><a href="{% url 'user_dashboard:booking_detail' b.booking_id %}"><i class="fa fa-eye"></i>View</a>views</td>
-              </tr>
-              {% endfor %}
-          
-            </tbody>
-          </table>
 
-
-        <div class="container-fluid p-0 m-0">
-            <div class="p-0 m-0 bg-dark text-white px-4 py-2 "><h5>All Booking Invoices</h5></div>
-           {% for b in bookings%}
-            <div class="container pt-4">
-                <h6><b>{{b.hotel.name}}</b> <span>{{b.payment_status}}</span></h6>
-                <p><b>Order Number:-</b> {{b.booking_id}} | <b>Date:-</b>{{b.date}}</p>
                 
-            </div>
-            <hr>
-            {% endfor %}
-        </div>
-    </section>
 
+                <div class="content p-4 border">
+                     <h6><i class="fas fa-receipt"></i><b> {{b.hotel.name}}</b> <span class="bg-success ml-3"> {{b.payment_status}} {{b.total}}</span></h6>
+                     <small><b>order Number: </b> {{b.booking_id}}  |  <b>date: </b> {{b.date}} | <b>Spent: </b> ${{b.total}}</small>
+                    
+                </div> 
+               
+                {% endfor %}
+
+            </div>
+           </div>
+     </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+       <script>
+        {% for message in messages %}
+          Swal.fire({
+            icon:"{{ message.tags }}",
+            title:"{{ message }}",
+            text:"{{message.tags}}",
+            timer: 1500
+          });
+        {% endfor %}
+      </script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
