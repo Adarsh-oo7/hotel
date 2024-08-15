@@ -4,6 +4,8 @@ from django.db import models
 from django.contrib import messages
 
 from hotel.models import Hotel, Booking, ActivityLog, StaffOnDuty, Room, RoomType ,Coupon,Notification,Bookmark
+from userauths.models import Profile
+from userauths.forms import UserUpdateForm,ProfileUpdateForm
 from django.http import JsonResponse
 # Create your views here.
 
@@ -102,3 +104,41 @@ def add_to_bookmark(request):
             return JsonResponse({"data":"Hotel Bookmarked", 'icon':'success'})
     else:
          return JsonResponse({'data':"Login To Bookmark Hotel",'icon':"success"})
+
+
+
+@login_required
+
+def profile(request):
+
+    profile = Profile.objects.get(user=request.user)
+
+    if request.method == "POST":
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance= request.user.profile)
+
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+
+            messages.success(request,"Profile update successfuly")
+            return redirect("user_dashboard:profile")
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+
+
+    context = {
+        "profile":profile,
+        "u_form":u_form,
+        "p_form":p_form
+    }
+
+    return render(request,"user_dashboard/profile.html",context)
+
+
+
+@login_required
+def password_changed(request):
+    return render(request,"user_dashboard/change-password.html")

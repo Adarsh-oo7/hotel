@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_view
 
 app_name = "user_dashboard"
 
@@ -13,7 +14,12 @@ urlpatterns = [
     path('wallet/',views.wallet,name="wallet"),
     path('bookmark/',views.bookmark,name="bookmark"),
     path('delete_bookmark/<bid>',views.delete_bookmark,name="delete_bookmark"),
-    path('add_to_bookmark/',views.add_to_bookmark,name="add_to_bookmark")
+    path('add_to_bookmark/',views.add_to_bookmark,name="add_to_bookmark"),
+    path('profile/',views.profile,name="profile"),
+
+    path("change-password/",auth_view.PasswordChangeView.as_view(template_name="user_dashboard/password-reset/change-password.html",success_url="/dashboard/password_changed"),name="change_password"),
+    path('password_changed/',views.password_changed,name='password_changed')
+
 
 
 ]

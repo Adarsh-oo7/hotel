@@ -30,7 +30,7 @@
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">BBBootstrap</span> </a>
-                <div class="nav_list"> <a href="{% url 'user_dashboard:dashboard' %}" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>  <a href="{% url 'user_dashboard:bookings' %}" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">All bookings</span> </a> <a href="{% url 'user_dashboard:profile' %}" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">My Profile</span> </a> <a href="{% url 'user_dashboard:notifications' %}" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Notifications</span> </a> <a href="{% url 'user_dashboard:bookmark' %}" class="nav_link"> <i class='bx bx-bookmark nav_icon'></i> <span class="nav_name">Bookmark</span> </a> <a href="{% url 'user_dashboard:wallet' %}" class="nav_link"> <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Wallet</span> </a> <a href="{% url 'user_dashboard:change_password' %}" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">change Password</span> </a> </div>
+              <div class="nav_list"> <a href="{% url 'user_dashboard:dashboard' %}" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>  <a href="{% url 'user_dashboard:bookings' %}" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">All bookings</span> </a> <a href="{% url 'user_dashboard:profile' %}" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">My Profile</span> </a> <a href="{% url 'user_dashboard:notifications' %}" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Notifications</span> </a> <a href="{% url 'user_dashboard:bookmark' %}" class="nav_link"> <i class='bx bx-bookmark nav_icon'></i> <span class="nav_name">Bookmark</span> </a> <a href="{% url 'user_dashboard:wallet' %}" class="nav_link"> <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Wallet</span> </a> <a href="{% url 'user_dashboard:change_password' %}" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">change Password</span> </a> </div>
             </div> <a href="{% url 'userauths:logOut' %}" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
         </nav>
     </div>
@@ -38,32 +38,69 @@
     <div class="height-100 bg-light">
         <div class="container-fluid d"></div>
 
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="bg-dark text-white p-3">
-                        <h5>All Bookings</h5>
-                    </div>
-
-                </div>
-                {% for b in bookings %}
-                <div class="col-12 p-4">
-                    <h5>{{b.full_name}} <span></span></h5>
-                    <p><b>Booking Item: </b> {{b.hotel.name}}</p>
-                    <p><b>Checkin Date: </b> {{b.check_in_date}} </p>
-                    <p><b>Checkout Date: </b> {{b.check_out_date}} </p>
-                    <p><b>Total Days: </b> {{b.total_days}} </p>
-                    <p><b>Adults: </b> {{b.num_adults}} </p>
-                    <p><b>Children: </b> {{b.num_children}} </p>
-                    <p><b>Price: </b>{{b.total}} </p>
-                    <br>
-                    <a href="{% url 'user_dashboard:booking_detail' b.booking_id %}" class="btn border p-2"><i class="fas fa-eye"></i> View Booking Detail</a>
-                </div>
-                <hr>
-                {% endfor %}
-
-            </div>
+        <div class="bg-dark text-light p-3">
+            <h5>Profile</h5>
         </div>
+            <div class="containe text-center my-5 mx-3 mb-5 border" >
+                <form action="">
+                    <div class="edit-profile mt-3">
+                        <img src="{{profile.image.url}}" style="width: 220px; height: 200px; object-fit: cover;" alt="">
+                    </div>
+                        <div>
+                            <span class="m-3"><i class="fa fa-upload"></i><input type="file"></span>
+                            <div class="row my-5 mx-2">
+                                <div class="col text-left">
+                                    <label for="" class="">Full Name</label>
+                                  <input type="text" class="form-control" placeholder="First name">
+                                </div>
+                                <div class="col text-left">
+                                    <label for="">Email</label>
+                                  <input type="text" class="form-control" placeholder="Email">
+                                </div>
+                              </div>
+
+                              <div class="row text-left mx-2">
+                                <div class="col">
+                                    <label for="">Mobile</label>
+                                  <input type="text" class="form-control" placeholder="Phone">
+                                </div>
+                                <div class="col">
+                                    <label for="">Gender</label>
+                                    <input type="text" class="form-control" placeholder="Gender">
+                                  </div>
+                                <div class="col">
+                                    <label for="">Country</label>
+                                  <input type="text" class="form-control" placeholder="Country">
+                                </div>
+                              </div>
+
+                              <div class="row text-left mx-2 my-5">
+                                <div class="col">
+                                    <label for="">State</label>
+                                  <input type="text" class="form-control" placeholder="State">
+                                </div>
+                                <div class="col">
+                                    <label for="">City</label>
+                                    <input type="text" class="form-control" placeholder="City">
+                                  </div>
+                                <div class="col">
+                                    <label for="">Address</label>
+                                  <input type="text" class="form-control" placeholder="Address">
+                                </div>
+                              </div>
+
+
+
+                        </div>
+                    
+                    <button class="btn nav_btn mb-5" >Save</button>
+                    
+                </form>
+            </div>
+
+      
+        
+  
 
 
 
@@ -80,6 +117,19 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Bootstrap JS -->
@@ -128,4 +178,4 @@
     </script>
 
 </body>
-</html>
+ 

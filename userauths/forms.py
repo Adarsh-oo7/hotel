@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import User,Profile
-
+from django.forms import FileInput
 class UserRegisterForm(UserCreationForm):
     full_name=forms.CharField(widget=forms.TextInput(attrs={'placeholder':"Enter the full Name",'class':"form-control"}))
     username=forms.CharField(widget=forms.TextInput(attrs={'placeholder':"Enter the User Name",'class':'form-control'}))
@@ -15,3 +15,38 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model=User
         fields=['full_name','username','email','phone','password1','password2']
+
+
+
+
+class UserUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ['email']
+
+
+class ProfileUpdateForm(forms.ModelForm):
+     
+     class Meta:
+         Model = Profile
+         fields = [
+            "image",
+            "full_name",
+            "phone",
+            "user",
+            "gender",
+            "country",
+            "city",
+            "state",
+            "address",
+            "identity",
+            "identity",
+            "facebook",
+            "instagram",
+         ]
+         widgts ={
+             'image':FileInput(attrs={"onchange": "loadFile(event)", "class": "upload" })
+         }
+
+

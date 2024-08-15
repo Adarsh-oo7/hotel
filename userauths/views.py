@@ -3,6 +3,7 @@ from .models import User,Profile
 from .forms import UserRegisterForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+
 # Create your views here.
 
 def RegisterView(request):
