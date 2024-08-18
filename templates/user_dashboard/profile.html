@@ -42,12 +42,12 @@
             <h5>Profile</h5>
         </div>
             <div class="containe text-center my-5 mx-3 mb-5 border" >
-                <form action="">
+                <form action="" method="POST" enctype="multipart/form-data">
                     <div class="edit-profile mt-3">
-                        <img src="{{profile.image.url}}" style="width: 220px; height: 200px; object-fit: cover;" alt="">
+                        <img src="{{profile.image.url}}" id="profile_image_preview" style="width: 220px; height: 200px; object-fit: cover;" alt="">
                     </div>
                         <div>
-                            <span class="m-3"><i class="fa fa-upload"></i><input type="file"></span>
+                            <span class="m-3"><i class="fa fa-upload"></i></span>{{p_form.image}}
                             <div class="row my-5 mx-2">
                                 <div class="col text-left">
                                     <label for="" class="">Full Name</label>
@@ -130,6 +130,18 @@
 
 
     </div>
+
+<script>
+  let loadFile = function(event){
+    let output2 = document.getElementById("profile_image_preview")
+    output2.src = URL.createObjectURL(event.target.files[0])
+    output2.onload = function(){
+      URL.revokeObjectURL(output2.src)
+
+    }
+  } 
+</script>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Bootstrap JS -->

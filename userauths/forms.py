@@ -26,11 +26,10 @@ class UserUpdateForm(forms.ModelForm):
         fields = ['email']
 
 
-class ProfileUpdateForm(forms.ModelForm):
-     
-     class Meta:
-         Model = Profile
-         fields = [
+class ProfileUpdateForm(forms.ModelForm):  
+    class Meta:
+        model = Profile
+        fields = [
             "image",
             "full_name",
             "phone",
@@ -40,13 +39,13 @@ class ProfileUpdateForm(forms.ModelForm):
             "city",
             "state",
             "address",
-            "identity",
-            "identity",
+            "identity_type",
+            "identity_image",
             "facebook",
-            "instagram",
+            "instagram"
          ]
-         widgts ={
-             'image':FileInput(attrs={"onchange": "loadFile(event)", "class": "upload" })
-         }
+        widgts ={
+            'image':FileInput(attrs={"onchange" :"loadFile(event)", "class": "upload" })
+        }
 
 
