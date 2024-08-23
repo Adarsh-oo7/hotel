@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'booking',
 
 
+
     #third part app
     'import_export',
     'crispy_forms',

@@ -108,7 +108,6 @@ def add_to_bookmark(request):
 
 
 @login_required
-
 def profile(request):
 
     profile = Profile.objects.get(user=request.user)

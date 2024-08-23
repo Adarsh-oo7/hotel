@@ -43,6 +43,7 @@
         </div>
             <div class="containe text-center my-5 mx-3 mb-5 border" >
                 <form action="" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
                     <div class="edit-profile mt-3">
                         <img src="{{profile.image.url}}" id="profile_image_preview" style="width: 220px; height: 200px; object-fit: cover;" alt="">
                     </div>
@@ -51,41 +52,45 @@
                             <div class="row my-5 mx-2">
                                 <div class="col text-left">
                                     <label for="" class="">Full Name</label>
-                                  <input type="text" class="form-control" placeholder="First name">
+                                 {{p_form.full_name}}
                                 </div>
                                 <div class="col text-left">
                                     <label for="">Email</label>
-                                  <input type="text" class="form-control" placeholder="Email">
+                                  {{u_form.email}}
                                 </div>
                               </div>
 
                               <div class="row text-left mx-2">
                                 <div class="col">
                                     <label for="">Mobile</label>
-                                  <input type="text" class="form-control" placeholder="Phone">
+                               {{p_form.phone}}
                                 </div>
                                 <div class="col">
                                     <label for="">Gender</label>
-                                    <input type="text" class="form-control" placeholder="Gender">
+                                    {{p_form.gender}}
+
                                   </div>
                                 <div class="col">
                                     <label for="">Country</label>
-                                  <input type="text" class="form-control" placeholder="Country">
-                                </div>
+                                    {{p_form.country}}
+
+                                  </div>
                               </div>
 
                               <div class="row text-left mx-2 my-5">
                                 <div class="col">
                                     <label for="">State</label>
-                                  <input type="text" class="form-control" placeholder="State">
-                                </div>
+                                    {{p_form.state}}
+
+                                  </div>
                                 <div class="col">
                                     <label for="">City</label>
-                                    <input type="text" class="form-control" placeholder="City">
+                                    {{p_form.city}}
+
                                   </div>
                                 <div class="col">
                                     <label for="">Address</label>
-                                  <input type="text" class="form-control" placeholder="Address">
+                                    {{p_form.address}}
                                 </div>
                               </div>
 
