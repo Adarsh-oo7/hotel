@@ -257,6 +257,7 @@ def create_checkout_session(request,booking_id):
     checkout_session = stripe.checkout.Session.create(
         customer_email= booking.email,
         payment_method_types=['card'],
+        
         line_items=[
             {
                 'price_data':{
