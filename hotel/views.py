@@ -260,6 +260,8 @@ def create_checkout_session(request,booking_id):
         
         line_items=[
             {
+
+                
                 'price_data':{
                     'currency':'USD',
                     'product_data':{
