@@ -258,6 +258,7 @@ def create_checkout_session(request,booking_id):
         customer_email= booking.email,
         payment_method_types=['card'],
         
+        
         line_items=[
             {
 
